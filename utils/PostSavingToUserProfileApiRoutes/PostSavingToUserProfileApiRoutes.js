@@ -1,5 +1,10 @@
 // here we are defining the host of the main api
-export const host = 'http://localhost:8080';
+// export const host = 'http://localhost:8080';
+
+
+
+export const host = 'https://backend-social-13bd.onrender.com';
+
 
 // this is the apir outef for the sending the for the frontend data to the backedn
 // saving the ppost to the user profile
