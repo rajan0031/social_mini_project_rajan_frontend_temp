@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'build', // Specifies the output directory where Vite will build your project
+    outDir: 'dist', // Specify 'dist' as the output directory
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -14,6 +14,6 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 1000, // Sets a warning limit for chunk sizes
+    chunkSizeWarningLimit: 1000,
   },
 });
