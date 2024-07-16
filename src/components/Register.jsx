@@ -87,7 +87,12 @@ function Register() {
             }
         }
 
+        console.log(username, email, password, conform_password)
+
     }
+
+
+
 
 
 
