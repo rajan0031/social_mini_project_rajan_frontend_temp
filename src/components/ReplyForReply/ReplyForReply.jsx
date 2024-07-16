@@ -121,7 +121,7 @@ function ReplyForReply({ comment }) {
             }
         }
         fetchReplyData();
-    }, [replyFormDataBase]);
+    }, []);
 
 
 

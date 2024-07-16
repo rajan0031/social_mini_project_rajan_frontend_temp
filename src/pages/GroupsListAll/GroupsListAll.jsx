@@ -30,7 +30,7 @@ function GroupsListAll() {
             }
         };
         fetchGroupList();
-    }, [user._id]);
+    }, []);
 
     // start of the handling the group details and the group direct message
 

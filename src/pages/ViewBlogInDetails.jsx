@@ -496,7 +496,7 @@ function ViewBlogInDetails() {
             const textContent = showContents(blogDetails.content);
             setHtmlContent(textContent);
         }
-    }, [blogDetails.content]);
+    }, []);
 
     // this is the function which will show my contents 
 

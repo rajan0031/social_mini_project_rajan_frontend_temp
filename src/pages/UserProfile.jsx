@@ -235,7 +235,7 @@ function UserProfile() {
         fetchUser();
 
 
-    }, [handleFinalEdit, submit, handleEdit]);
+    }, []);
 
 
     // printing the current user

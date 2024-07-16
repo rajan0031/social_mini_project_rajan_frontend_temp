@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import GroupChatRoom from '../../components/GroupChatRoom/GroupChatRoom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { addGroupChatRoomMessage } from '../../../utils/GroupChatRoomApi/GroupChatRoomApi';
 
 function GroupDetailsForm({ addedUsers, localStorageUser }) {
-    const [groupName, setGroupName] = useState('');
-    const [groupDescription, setGroupDescription] = useState('');
-    const [profileLink, setProfileLink] = useState('');
-    const [admins, setAdmins] = useState('');
-    const [isAdminOnlyMessage, setIsAdminOnlyMessage] = useState(false);
+    const [groupName, setGroupName] = useEffect('');
+    const [groupDescription, setGroupDescription] = useEffect('');
+    const [profileLink, setProfileLink] = useEffect('');
+    const [admins, setAdmins] = useEffect('');
+    const [isAdminOnlyMessage, setIsAdminOnlyMessage] = useEffect(false);
 
     // using the  navigation system here
 
@@ -65,7 +65,7 @@ function GroupDetailsForm({ addedUsers, localStorageUser }) {
 
     // trying to print the user 
 
-    useState(() => {
+    useEffect(() => {
         console.log("thi sis the GroupDetails form ::", typeof addedUsers);
     }, [])
 

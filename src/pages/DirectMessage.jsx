@@ -97,7 +97,7 @@ function DirectMessage() {
 
     useEffect(() => {
         arrivalMessage && setMessagesFromDatabase(prevMessages => [...prevMessages, arrivalMessage]); // Update messagesFromDatabase
-    }, [arrivalMessage]);
+    }, []);
 
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -165,7 +165,7 @@ function DirectMessage() {
             }
         }
         fetchMessages();
-    }, [messagesFromDataBase]);
+    }, []);
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">

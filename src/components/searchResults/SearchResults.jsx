@@ -30,7 +30,7 @@ function SearchResults() {
             }
         };
         fetchResults();
-    }, [searchData]);
+    }, []);
 
 
 

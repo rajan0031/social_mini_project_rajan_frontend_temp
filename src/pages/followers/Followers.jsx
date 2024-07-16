@@ -53,7 +53,7 @@ function Followers() {
         };
 
         fetchFollowers();
-    }, [handleRemove]);
+    }, []);
 
 
 

@@ -79,7 +79,7 @@ function AllUsersProfile() {
                 socket.current.disconnect();
             }
         };
-    }, [localStorageUser]);
+    }, []);
 
 
 
@@ -179,7 +179,7 @@ function AllUsersProfile() {
         }
         fetch();
 
-    }, [handleUnFollow, handleUnFollow]);
+    }, []);
 
 
     // start of the handling the video call features

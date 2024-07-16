@@ -62,7 +62,7 @@ function AllUsers() {
             });
             // setSocket(newSocket); // Set the socket in state
         }
-    }, [localStorageUser]);
+    }, []);
 
     const handleDirectMessage = (user) => {
 
@@ -95,7 +95,7 @@ function AllUsers() {
     // useEffect to update addUserFlag immediately after addedUsers state changes
     useEffect(() => {
 
-    }, [addedUsers]);
+    }, []);
 
     // start of the add user button in the making of the group
 

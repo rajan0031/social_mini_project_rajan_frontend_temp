@@ -59,7 +59,7 @@ function Following() {
         };
 
         fetchFollowings();
-    }, [handleRemove]);
+    }, []);
 
 
 

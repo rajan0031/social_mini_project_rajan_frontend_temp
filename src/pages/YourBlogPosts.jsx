@@ -81,7 +81,7 @@ function YourBlogPosts() {
             }
         };
         fetchUserFromLocal();
-    }, [navigate]);
+    }, []);
 
 
     const handleBlogsDetails = async (blogId) => {

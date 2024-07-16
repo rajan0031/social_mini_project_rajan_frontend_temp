@@ -75,7 +75,7 @@ function GroupChatRoom() {
             }
         };
         fetchMessages();
-    }, [group._id, message, messagesFromDataBase]);
+    }, []);
 
 
     // start of the handle edit functionality
