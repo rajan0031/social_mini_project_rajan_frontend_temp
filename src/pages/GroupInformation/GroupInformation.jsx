@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { json, useLocation } from 'react-router-dom';
-import groupSettings from "../../assets/group settings.png"
+import { useLocation } from 'react-router-dom';
+import { FaUsers, FaUserShield, FaCog, FaUserPlus, FaTrashAlt, FaArrowCircleRight, FaTimesCircle, FaUserCircle, FaWrench, FaInfoCircle } from 'react-icons/fa';
 import AllUsers from '../../components/AllUsers/AllUsers';
 import AddNewMembersToGroup from '../AddNewMembersToGroup/AddNewMembersToGroup';
-import deleteUser from "../../assets/bin.png"
 import { removeUserFromGroup } from '../../../utils/GroupChatRoomApi/GroupChatRoomApi';
 import axios from 'axios';
 
@@ -13,156 +12,158 @@ function GroupInformation() {
     const [addMembersFlags, setAddMembersFlags] = useState(false);
     const [localStorageUser, setLocalStorageUser] = useState();
 
-    // start of the opening and closing the model code 
-
+    // Modal State
     const [isOpen, setIsOpen] = useState(false);
 
-    // Function to toggle modal visibility
-    const toggleModal = () => {
-        setIsOpen(!isOpen);
-    };
-
-    // Function to close the modal
-    const closeModal = () => {
-        setIsOpen(false);
-    };
-
-    //end of the opening and closing the model code
-
-
+    // Fetch local storage user data
     useEffect(() => {
         const localUser = JSON.parse(localStorage.getItem('blog-user'));
         setLocalStorageUser(localUser);
     }, []);
 
+    // Toggle modal visibility
+    const toggleModal = () => setIsOpen(!isOpen);
+    const closeModal = () => setIsOpen(false);
 
-
-    // start of the adding a group member in the group
-
+    // Add new members to group
     const handleAddNewUserToGroup = (group) => {
         setAddMembersFlags(true);
-        // console.log(group);
-    }
+    };
 
-    // end of the adding a member to the group
-
-    // this is the start of the removeal of the user from the group
-
+    // Remove a member from group
     const handleRemoveMemberFromGroup = async (member) => {
-
         try {
-
             const response = await axios.post(`${removeUserFromGroup}`, {
                 groupId: group._id,
                 memberId: member._id,
             });
-
             console.log(response);
-
-
         } catch (err) {
             console.log(err);
         }
+    };
 
-        // console.log(member);
-
-    }
-
-    // this is the emd of the user removeal from the group
-
-
-    // start of the function for handling the group settings
-
+    // Handle group settings
     const handleGroupSettings = () => {
-        console.log("clicked")
-
-    }
-
-    //end of the function for handling the group settings
+        console.log("Group settings clicked!");
+    };
 
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-                <div className="bg-gray-800 text-white p-4 flex items-center justify-center">
+                {/* Group Header */}
+                <div className="bg-gray-800 text-white p-4 flex items-center justify-center relative">
                     <img
                         src={group.profileLink}
                         alt="Group Profile"
-                        className="h-32 w-auto object-cover rounded-md"
+                        className="h-32 w-32 object-cover rounded-full border-4 border-white shadow-md"
+                    />
+                    <FaCog
+                        onClick={toggleModal}
+                        className="absolute top-2 right-2 text-2xl text-white cursor-pointer hover:text-yellow-500 transition"
                     />
                 </div>
-                <div className="p-0">
-                    <h2 className="text-xl font-semibold text-gray-800 mb-2">{group.groupName}</h2>
-                    <p className="text-sm text-gray-600 mb-4">{group.groupDescription}</p>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Group Members</h3>
+
+                <div className="p-6">
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-2 flex items-center">
+                        <FaUsers className="mr-2 text-blue-500" /> {group.groupName}
+                    </h2>
+                    <p className="text-gray-600 mb-4">
+                        <FaInfoCircle className="text-blue-500 mr-2" />
+                        {group.groupDescription}
+                    </p>
+
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-lg font-semibold text-gray-800 flex items-center">
+                            <FaUserCircle className="mr-2 text-green-500" /> Group Members
+                        </h3>
+                        <button
+                            onClick={() => handleAddNewUserToGroup(group)}
+                            className="bg-blue-500 text-white px-3 py-2 rounded-full flex items-center space-x-1 hover:bg-blue-600 transition"
+                        >
+                            <FaUserPlus className="mr-1" /> Add Members
+                        </button>
+                    </div>
+
                     <ul>
-                        <div className="flex items-center justify-start p-4 bg-gray-100 rounded shadow-md">
-                            <p className="text-lg font-medium text-gray-700 mr-2">
-                                Click here to change settings
-                            </p>
-                            <button
-                                onClick={toggleModal}
-
-                                // {isOpen && (
-                                //     <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50" onClick={closeModal}></div>
-                                // )}
-
-                                className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                                <img className="w-5 h-5" src={groupSettings} alt="Group Settings" />
-                            </button>
-                        </div>
                         {Object.values(group.allMembersDetails).map(member => (
-                            <li key={member._id} className="flex items-center py-2">
-
-                                {
-                                    group.admins.includes(member.username) ? (
+                            <li key={member._id} className="flex items-center justify-between py-2 border-b">
+                                <div className="flex items-center">
+                                    {group.admins.includes(member.username) ? (
                                         <div className="flex items-center">
-                                            <span className="bg-green-400 text-white px-2 py-1 rounded-full text-xs mr-2">Admin</span>
-                                            <p className="text-gray-800 hover:text-blue-500 cursor-pointer" /* Add hover effect here */>{member.username}</p>
+                                            <FaUserShield className="text-green-500 mr-2" />
+                                            <p className="font-semibold text-gray-800 hover:text-blue-500 cursor-pointer">
+                                                {member.username} (Admin)
+                                            </p>
                                         </div>
-
                                     ) : (
                                         <p className="text-gray-800">{member.username}</p>
-                                    )
-                                }
+                                    )}
+                                </div>
 
+                                <div className="flex items-center space-x-4">
+                                    <button className="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600 transition">
+                                        View Profile
+                                    </button>
 
-
-
-                                <div className="ml-auto flex items-center"> {/* Added ml-auto */}
-                                    <div className="flex space-x-9">
-
-                                        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm ">
-                                            View Profile
+                                    {group.admins === localStorageUser?.username && (
+                                        <button onClick={() => handleRemoveMemberFromGroup(member)}>
+                                            <FaTrashAlt className="text-red-500 hover:text-red-700 transition cursor-pointer" />
                                         </button>
-                                        {
-                                            group?.admins === localStorageUser?.username ? (<> <button onClick={() => handleRemoveMemberFromGroup(member)}>
-                                                <img className='h-5 w-5' src={deleteUser} alt="" />
-                                            </button></>) : (<></>)
-                                        }
-
-                                    </div>
+                                    )}
                                 </div>
                             </li>
                         ))}
                     </ul>
+
+                    {/* Group Settings Modal */}
+                    {isOpen && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                            <div className="bg-white p-6 rounded-lg shadow-lg relative">
+                                <button
+                                    onClick={closeModal}
+                                    className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 transition"
+                                >
+                                    <FaTimesCircle className="text-xl" />
+                                </button>
+                                <h2 className="text-xl font-bold text-gray-800 mb-4">Group Settings</h2>
+                                {/* Add Group Settings Content Here */}
+                                <div className="space-y-4">
+                                    <p className="text-gray-600 flex items-center">
+                                        <FaWrench className="mr-2 text-blue-500" /> Change group name, description, and profile picture.
+                                    </p>
+                                    <p className="text-gray-600 flex items-center">
+                                        <FaUserShield className="mr-2 text-yellow-500" /> Manage admins and group permissions.
+                                    </p>
+                                </div>
+                                <button
+                                    onClick={handleGroupSettings}
+                                    className="bg-blue-500 text-white mt-4 px-4 py-2 rounded-lg hover:bg-blue-600 transition w-full flex items-center justify-center"
+                                >
+                                    <FaArrowCircleRight className="mr-2" /> Go to Settings
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
-            <div className="p-4 bg-gray-200 rounded-md shadow-md">
 
-
-                {
-                    addMembersFlags == true ? (<><AddNewMembersToGroup group={group} /></>) : (<>  <h2>Click on add members to add a new users</h2>
+            {/* Add Members Section */}
+            <div className="p-4 bg-gray-200 rounded-md shadow-md mt-6">
+                {addMembersFlags ? (
+                    <AddNewMembersToGroup group={group} />
+                ) : (
+                    <div className="text-center">
+                        <h2 className="text-lg text-gray-700 mb-4">Want to add new members?</h2>
                         <button
                             onClick={() => handleAddNewUserToGroup(group)}
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Add Members
-                        </button></>)
-                }
-
-
-
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center space-x-2 transition"
+                        >
+                            <FaUserPlus className="mr-1" /> Add Members
+                        </button>
+                    </div>
+                )}
             </div>
-
         </div>
     );
 }

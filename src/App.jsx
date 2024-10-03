@@ -26,40 +26,46 @@ import ProfileSettings from './components/ProfileSettings/ProfileSettings';
 import UsersSavedPosts from './pages/UsersSavedPosts/UsersSavedPosts';
 import AllBlogsPosts from './components/AllBlogsPosts/AllBlogsPosts';
 import CreateBlogEditor from './components/CreateBlogEditor/CreateBlogEditor';
+import ChatRoomLayout from './ChatRoomLayout/ChatRoomLayout';
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/createblog" element={<CreateBlog />} />
-          <Route path="/myblogs" element={<YourBlogPosts />} />
-          <Route path="/blogdetails" element={<ViewBlogInDetails />} />
-          <Route path="/tag/:tag" element={<ViewBlogsByTags />} />
-          <Route path="/edit" element={<EditBlog />} />
-          <Route path="/userprofile" element={<UserProfile />} />
-          <Route path="/allusersprofiles" element={<AllUsersProfile />} />
-          <Route path="/directmessage" element={<DirectMessage />} />
-          <Route path="/followers" element={<Followers />} />
-          <Route path="/followings" element={<Following />} />
-          <Route path="/searchresults" element={<SearchResults />} />
-          <Route path="/userrecentmessages" element={<UserRecentMessagesContacts />} />
-          <Route path="/videocall" element={<VideoCall />} />
-          <Route path="/videocallroom" element={<VideoCallRoom />} />
-          <Route path="/groupchatroom" element={<GroupChatRoom />} />
-          <Route path="/myallgroups" element={<GroupsListAll />} />
-          <Route path="/groupinformation" element={<GroupInformation />} />
-          <Route path="/profilesettings" element={<ProfileSettings />} />
-          <Route path="/mysavedposts" element={<UsersSavedPosts />} />
-          <Route path="/allblogsposts" element={<AllBlogsPosts />} />
-          <Route path="/createblogeditor" element={<CreateBlogEditor />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* Direct message route inside the ChatRoomLayout */}
+        <Route path="/directmessage" element={
+          <ChatRoomLayout>
+            <DirectMessage />
+          </ChatRoomLayout>
+        } />
+
+        {/* Other routes inside the standard Layout */}
+        <Route path="/" element={<Layout><Home /></Layout>} />
+        <Route path="/login" element={<Layout><Login /></Layout>} />
+        <Route path="/register" element={<Layout><Register /></Layout>} />
+        <Route path="/home" element={<Layout><Home /></Layout>} />
+        <Route path="/createblog" element={<Layout><CreateBlog /></Layout>} />
+        <Route path="/myblogs" element={<Layout><YourBlogPosts /></Layout>} />
+        <Route path="/blogdetails" element={<Layout><ViewBlogInDetails /></Layout>} />
+        <Route path="/tag/:tag" element={<Layout><ViewBlogsByTags /></Layout>} />
+        <Route path="/edit" element={<Layout><EditBlog /></Layout>} />
+        <Route path="/userprofile" element={<Layout><UserProfile /></Layout>} />
+        <Route path="/allusersprofiles" element={<Layout><AllUsersProfile /></Layout>} />
+        <Route path="/followers" element={<Layout><Followers /></Layout>} />
+        <Route path="/followings" element={<Layout><Following /></Layout>} />
+        <Route path="/searchresults" element={<Layout><SearchResults /></Layout>} />
+        <Route path="/userrecentmessages" element={<Layout><UserRecentMessagesContacts /></Layout>} />
+        <Route path="/videocall" element={<Layout><VideoCall /></Layout>} />
+        <Route path="/videocallroom" element={<Layout><VideoCallRoom /></Layout>} />
+        <Route path="/groupchatroom" element={<Layout><GroupChatRoom /></Layout>} />
+        <Route path="/myallgroups" element={<Layout><GroupsListAll /></Layout>} />
+        <Route path="/groupinformation" element={<Layout><GroupInformation /></Layout>} />
+        <Route path="/profilesettings" element={<Layout><ProfileSettings /></Layout>} />
+        <Route path="/mysavedposts" element={<Layout><UsersSavedPosts /></Layout>} />
+        <Route path="/allblogsposts" element={<Layout><AllBlogsPosts /></Layout>} />
+        <Route path="/createblogeditor" element={<Layout><CreateBlogEditor /></Layout>} />
+        <Route path="*" element={<Layout><ErrorPage /></Layout>} />
+      </Routes>
     </BrowserRouter>
   );
 }

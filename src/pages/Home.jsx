@@ -8,6 +8,7 @@ import RecentUsers from '../components/HomePageSplittedComponents/RecentUsers/Re
 import BlogHeader from '../components/HomePageSplittedComponents/BlogHeader/BlogHeader';
 import AboutPageForLibertyPost from '../components/AboutPageForLibertyPost/AboutPageForLibertyPost';
 import DifferenceFromOtherSocialMedia from './DifferenceFromOtherSocialMedia/DifferenceFromOtherSocialMedia';
+import SliderHome from './SliderHome/SliderHome';
 
 function Home() {
     const [blogs, setBlogs] = useState([]);
@@ -107,6 +108,7 @@ function Home() {
         <>
 
             <AboutPageForLibertyPost />
+            <SliderHome />
 
 
             <div className="container mx-auto flex flex-col md:flex-row md:space-x-6 mt-6">
