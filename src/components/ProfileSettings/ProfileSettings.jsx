@@ -3,8 +3,7 @@ import React from 'react'
 function ProfileSettings() {
     return (
         <div>
-            thi sis my profile settings
-
+            this is my profile settings
         </div>
     )
 }

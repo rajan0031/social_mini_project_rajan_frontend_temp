@@ -1,48 +1,31 @@
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { recentMessage } from '../../../utils/RecentMessages/RecentMessages';
-import axios from "axios"
-import { useNavigate } from 'react-router-dom';
-
 import UsersRecentVideoCalls from '../UsersRecentVideoCalls/UsersRecentVideoCalls';
-
 import UserCalledTheCurrentLocalUser from '../UsersRecentVideoCalls/UserCalledTheCurrentLocalUser';
+import RecentMessagesList from '../UserRecentMessagesContactsComponents/RecentMessagesList/RecentMessagesList';
+import WelcomeSection from '../UserRecentMessagesContactsComponents/WelcomeSection/WelcomeSection';
 
 function UserRecentMessagesContacts() {
-
     const [recentUsersMessages, setRecentUsersMessages] = useState([]);
-
-
-
     const location = useLocation();
-
     const user = location.state?.user;
-
     const navigate = useNavigate();
 
-
     useEffect(() => {
-        // console.log(user._id);
-
-        const fetch = async () => {
+        const fetchRecentMessages = async () => {
             try {
-                const response = await axios.post(`${recentMessage}`, {
-                    userId: user._id,
-                });
+                const response = await axios.post(`${recentMessage}`, { userId: user._id });
                 if (response) {
                     setRecentUsersMessages(response.data.response);
-                    console.log(typeof response.data.response);
                 }
             } catch (err) {
                 console.log(err);
             }
-
-        }
-        fetch();
-    }, [])
-
-
-    // start of the hnadling handleDirectMessageTouser 
+        };
+        fetchRecentMessages();
+    }, [user._id]);
 
     const handleDirectMessageToUser = (user) => {
         navigate("/directmessage", {
@@ -53,42 +36,32 @@ function UserRecentMessagesContacts() {
                 toName: user.toName,
             },
         });
-
-    }
-
-
-    // end of the handling the direct message
+    };
 
     return (
         <div className="max-w-screen-lg mx-auto p-4">
+            <WelcomeSection />
             <h1 className="text-2xl font-bold mb-4">Recent Conversations</h1>
-            {recentUsersMessages.length > 0 ? (recentUsersMessages.map((user, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-md p-4 mb-4">
-                    <button
-                        onClick={() => handleDirectMessageToUser(user)}
-                        className="text-blue-500 font-semibold hover:underline mb-2"
-                    >
-                        {user?.fromName ? user.toName : user.to}
-                    </button>
-                    <p className="text-gray-600">{user.message}</p>
-                    <p className="text-sm text-gray-400 mt-1">
-                        {new Date(user.timestamp).toLocaleString()}
-                    </p>
-                </div>
-            ))) : (<>no recent messages</>)}
-
-            <div>
-                This the section for the recent Video calls from the users for you
+            <RecentMessagesList
+                recentUsersMessages={recentUsersMessages}
+                handleDirectMessageToUser={handleDirectMessageToUser}
+            />
+            <div className="mt-6">
+                <h2 className="text-lg font-semibold">Recent Video Calls</h2>
+                <p className="text-gray-600 mb-2">
+                    Check out the latest video calls from your contacts! <span role="img" aria-label="video call">📹</span>
+                </p>
                 <UsersRecentVideoCalls />
             </div>
-
-            <div>
-                the different users have called the current local user
-
+            <div className="mt-6">
+                <h2 className="text-lg font-semibold">Calls Made to You</h2>
+                <p className="text-gray-600 mb-2">
+                    Here are the users who have tried to contact you. <span role="img" aria-label="incoming call">📞</span>
+                </p>
                 <UserCalledTheCurrentLocalUser user={user} />
             </div>
         </div>
-    )
+    );
 }
 
 export default UserRecentMessagesContacts;

@@ -97,7 +97,7 @@ function DirectMessage() {
 
     useEffect(() => {
         arrivalMessage && setMessagesFromDatabase(prevMessages => [...prevMessages, arrivalMessage]); // Update messagesFromDatabase
-    }, []);
+    }, [handleMessageSend]);
 
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
