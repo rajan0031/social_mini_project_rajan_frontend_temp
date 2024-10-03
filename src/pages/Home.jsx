@@ -7,6 +7,7 @@ import BlogList from '../components/HomePageSplittedComponents/BlogList/BlogList
 import RecentUsers from '../components/HomePageSplittedComponents/RecentUsers/RecentUsers';
 import BlogHeader from '../components/HomePageSplittedComponents/BlogHeader/BlogHeader';
 import AboutPageForLibertyPost from '../components/AboutPageForLibertyPost/AboutPageForLibertyPost';
+import DifferenceFromOtherSocialMedia from './DifferenceFromOtherSocialMedia/DifferenceFromOtherSocialMedia';
 
 function Home() {
     const [blogs, setBlogs] = useState([]);
@@ -141,6 +142,7 @@ function Home() {
                     </div>
                 </div>
             </div>
+            <DifferenceFromOtherSocialMedia />
         </>
     );
 }
