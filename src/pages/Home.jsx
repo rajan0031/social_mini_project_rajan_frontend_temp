@@ -8,7 +8,6 @@ import RecentUsers from '../components/HomePageSplittedComponents/RecentUsers/Re
 import BlogHeader from '../components/HomePageSplittedComponents/BlogHeader/BlogHeader';
 import BlogPost from '../components/HomePageSplittedComponents/BlogPost/BlogPost';
 
-
 function Home() {
     const [blogs, setBlogs] = useState([]);
     const [likesMap, setLikesMap] = useState({});
@@ -104,9 +103,12 @@ function Home() {
     };
 
     return (
-        <div className="container mx-auto flex">
-            <SuggestedUsers />
-            <div className="w-1/2 overflow-y-scroll h-screen">
+        <div className="container mx-auto flex flex-col md:flex-row">
+            {/* Show SuggestedUsers only on medium and larger screens */}
+            <div className="hidden md:block">
+                <SuggestedUsers />
+            </div>
+            <div className="w-full md:w-1/2 overflow-y-scroll h-screen">
                 <BlogHeader />
                 <BlogList
                     blogs={blogs}
@@ -120,7 +122,10 @@ function Home() {
                     expandedTagPosts={expandedTagPosts}
                 />
             </div>
-            <RecentUsers />
+            {/* Show RecentUsers only on medium and larger screens */}
+            <div className="hidden md:block">
+                <RecentUsers />
+            </div>
         </div>
     );
 }
