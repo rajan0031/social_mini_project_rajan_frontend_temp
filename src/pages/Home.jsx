@@ -6,6 +6,7 @@ import SuggestedUsers from '../components/HomePageSplittedComponents/SuggestedUs
 import BlogList from '../components/HomePageSplittedComponents/BlogList/BlogList';
 import RecentUsers from '../components/HomePageSplittedComponents/RecentUsers/RecentUsers';
 import BlogHeader from '../components/HomePageSplittedComponents/BlogHeader/BlogHeader';
+import AboutPageForLibertyPost from '../components/AboutPageForLibertyPost/AboutPageForLibertyPost';
 
 function Home() {
     const [blogs, setBlogs] = useState([]);
@@ -102,39 +103,45 @@ function Home() {
     };
 
     return (
-        <div className="container mx-auto flex flex-col md:flex-row md:space-x-6 mt-6">
-            {/* Left Side - Suggested Users */}
-            <div className="hidden md:block w-1/4 bg-gray-100 rounded-lg shadow-lg p-4">
-                <h2 className="text-lg font-semibold mb-4 text-center">Suggested Users</h2>
-                <div className="flex flex-col space-y-4">
-                    <SuggestedUsers />
+        <>
+
+            <AboutPageForLibertyPost />
+
+
+            <div className="container mx-auto flex flex-col md:flex-row md:space-x-6 mt-6">
+                {/* Left Side - Suggested Users */}
+                <div className="hidden md:block w-1/4 bg-gray-100 rounded-lg shadow-lg p-4">
+                    <h2 className="text-lg font-semibold mb-4 text-center">Suggested Users</h2>
+                    <div className="flex flex-col space-y-4">
+                        <SuggestedUsers />
+                    </div>
+                </div>
+
+                {/* Center - Blog Content */}
+                <div className="w-full md:w-1/2 bg-gray-50 rounded-lg shadow-lg p-6 overflow-y-auto h-screen">
+                    <BlogHeader />
+                    <BlogList
+                        blogs={blogs}
+                        visiblePosts={visiblePosts}
+                        handleBlogsDetails={handleBlogsDetails}
+                        handleTags={handleTags}
+                        handleLikes={handleLikes}
+                        likeCountMap={likeCountMap}
+                        handleAuthorProfile={handleAuthorProfile}
+                        toggleShowMoreTags={toggleShowMoreTags}
+                        expandedTagPosts={expandedTagPosts}
+                    />
+                </div>
+
+                {/* Right Side - Recent Users */}
+                <div className="hidden md:block w-1/4 bg-gray-100 rounded-lg shadow-lg p-4">
+                    <h2 className="text-lg font-semibold mb-4 text-center">Recent Users</h2>
+                    <div className="flex flex-col space-y-4">
+                        <RecentUsers />
+                    </div>
                 </div>
             </div>
-
-            {/* Center - Blog Content */}
-            <div className="w-full md:w-1/2 bg-gray-50 rounded-lg shadow-lg p-6 overflow-y-auto h-screen">
-                <BlogHeader />
-                <BlogList
-                    blogs={blogs}
-                    visiblePosts={visiblePosts}
-                    handleBlogsDetails={handleBlogsDetails}
-                    handleTags={handleTags}
-                    handleLikes={handleLikes}
-                    likeCountMap={likeCountMap}
-                    handleAuthorProfile={handleAuthorProfile}
-                    toggleShowMoreTags={toggleShowMoreTags}
-                    expandedTagPosts={expandedTagPosts}
-                />
-            </div>
-
-            {/* Right Side - Recent Users */}
-            <div className="hidden md:block w-1/4 bg-gray-100 rounded-lg shadow-lg p-4">
-                <h2 className="text-lg font-semibold mb-4 text-center">Recent Users</h2>
-                <div className="flex flex-col space-y-4">
-                    <RecentUsers />
-                </div>
-            </div>
-        </div>
+        </>
     );
 }
 
