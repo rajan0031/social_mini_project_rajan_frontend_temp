@@ -1,5 +1,19 @@
 // import React from 'react';
 import { useLocation } from 'react-router-dom';
+import {
+    FaTags,
+    FaUser,
+    FaCalendarAlt,
+    FaCommentDots,
+    FaHeart,
+    FaRegHeart,
+    FaSave,
+    FaRegSave,
+    FaEdit,
+    FaTrashAlt,
+    FaPlusCircle,
+    FaComments
+} from 'react-icons/fa';
 import axios from 'axios';
 import { allBlogsByTagName } from '../../utils/apiRoutes';
 import { useEffect, useState } from 'react';
@@ -514,267 +528,287 @@ function ViewBlogInDetails() {
 
 
     return (
+        <>
+            <div className="bg-gradient-to-r from-blue-100 via-indigo-200 to-purple-100 p-6 rounded-lg shadow-lg max-w-4xl mx-auto mt-10 transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:scale-105">
+                {/* Blog Header */}
+                <h1 className="text-4xl font-extrabold text-gray-800 mb-4 text-center hover:text-indigo-600 transition duration-300 ease-in-out">
+                    Welcome to My Blog Post
+                </h1>
 
+                {/* Short Description */}
+                <p className="text-lg text-gray-700 text-center mb-6">
+                    Dive into the world of technology, trends, and insightful discussions. This post covers a range of topics that will enrich your knowledge.
+                </p>
 
-        <div className='bg-slate-500'>
-
-
-            <div className="container mx-auto mt-10">
-                <div className="max-w-2xl mx-auto bg-white p-8 rounded shadow">
-                    <img src={blogDetails.imageUrl} alt={blogDetails.title} className="w-full h-64 object-cover mb-8 rounded" />
-                    <h2 className="text-3xl font-bold mb-4">{blogDetails.title}</h2>
-                    <span className="text-gray-600 text-sm">
-                        Posted on {new Date(blogDetails.date).toLocaleString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                            hour: 'numeric',
-                            minute: 'numeric',
-                            hour12: true,
-
-                        })}
+                {/* Decorative Elements */}
+                <div className="flex justify-center space-x-4 mt-4">
+                    <span className="p-3 bg-indigo-500 text-white rounded-full shadow-lg transform hover:scale-110 transition duration-300 ease-in-out">
+                        ✍️
                     </span>
+                    <span className="p-3 bg-pink-500 text-white rounded-full shadow-lg transform hover:scale-110 transition duration-300 ease-in-out">
+                        📅
+                    </span>
+                    <span className="p-3 bg-green-500 text-white rounded-full shadow-lg transform hover:scale-110 transition duration-300 ease-in-out">
+                        💬
+                    </span>
+                </div>
+
+                {/* Bottom Text */}
+                <p className="mt-6 text-center text-gray-500">
+                    Scroll down to explore more!
+                </p>
+            </div>
 
 
-                    <p className="text-red-600 mb-4">{blogDetails.author}</p>
-                    <p className="text-gray-500 mb-4">{blogDetails.category}</p>
-                    <div className="flex mb-4 space-x-2">
-                        {blogDetails.tags.map((tag, tagIndex) => (
-                            <button onClick={() => handleTags(tag)}
-                                key={tagIndex + 1}
-                                className="bg-green-300 hover:bg-green-400 text-green-800 py-1 px-2 rounded transition duration-300 ease-in-out"
-                            >
-                                <span key={tagIndex} className="px-2 py-1 text-xs text-gray-700 rounded">
-                                    {tag}
-                                </span>
-                            </button>
-
-                        ))}
-
-
+            <div className="bg-gradient-to-r from-indigo-100 to-indigo-200 min-h-screen py-10 px-4">
+                <div className="container mx-auto max-w-4xl p-6 bg-white shadow-lg rounded-lg transform hover:shadow-2xl transition duration-300 ease-in-out">
+                    {/* Blog Image */}
+                    <div className="relative group">
+                        <img
+                            src={blogDetails.imageUrl}
+                            alt={blogDetails.title}
+                            className="w-full h-64 object-cover rounded-lg mb-6 transform group-hover:scale-105 transition duration-300 ease-in-out"
+                        />
+                        <div className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg transform group-hover:scale-110 transition duration-300">
+                            <FaSave
+                                className="text-gray-500 cursor-pointer hover:text-blue-500 transition duration-300"
+                                onClick={() => handleSaveToUserProfile(blogDetails)}
+                            />
+                        </div>
                     </div>
 
-                    <p className="text-gray-800"> {htmlContent} </p>
+                    {/* Blog Title and Meta */}
+                    <div className="mb-6">
+                        <h2 className="text-4xl font-bold text-gray-800 mb-2 hover:text-indigo-600 transition duration-300 ease-in-out">
+                            {blogDetails.title}
+                        </h2>
+                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                            <span className="flex items-center">
+                                <FaUser className="inline mr-1 text-blue-500" /> {blogDetails.author}
+                            </span>
+                            <span className="flex items-center">
+                                <FaCalendarAlt className="inline mr-1 text-blue-500" />{" "}
+                                {new Date(blogDetails.date).toLocaleString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                    hour: "numeric",
+                                    minute: "numeric",
+                                    hour12: true,
+                                })}
+                            </span>
+                        </div>
+                    </div>
 
+                    {/* Blog Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        {blogDetails.tags.map((tag, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handleTags(tag)}
+                                className="bg-indigo-200 text-indigo-800 px-3 py-1 rounded-full hover:bg-indigo-300 transition duration-300 flex items-center space-x-1"
+                            >
+                                <FaTags />
+                                <span>{tag}</span>
+                            </button>
+                        ))}
+                    </div>
 
+                    {/* Blog Content */}
+                    <div className="text-gray-700 mb-6 leading-relaxed">
+                        <p className="hover:tracking-wider transition duration-300 ease-in-out">
+                            {htmlContent}
+                        </p>
+                    </div>
 
-                    <div className=' flex justify-between'>
-                        {/* Comment Button */}
-                        <button className=" bg-white-100 bg-neutral-500   border-spacing-3 text-white font-bold py-2 px-4 rounded mt-4" onClick={() => handleComments(blogDetails._id)}>
-                            <img className='w-10 h-10' src={chat} alt="comments" />
-                            <span className="ml-2">Add Comment</span>
+                    {/* Action Buttons */}
+                    <div className="flex justify-between items-center mb-6">
+                        {/* Add Comment */}
+                        <button
+                            className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                            onClick={() => handleComments(blogDetails._id)}
+                        >
+                            <FaCommentDots className="text-white" />
+                            <span>Add Comment</span>
                         </button>
-
-                        {/*  start of the  thi sis button for the save the post to read for later */}
-
-                        <button className="focus:outline-none">
-                            <img onClick={() => handleSaveToUserProfile(blogDetails)} className="w-10 h-10 hover:opacity-75 transition duration-300" src={savedPost} alt="Save Post" />
-                        </button>
-
-
-
-                        {/* end of the  thi sis button for the save the post to read for later */}
 
                         {/* Like/Unlike Button */}
-                        <button className={`mt-4 ${likeToggler || likesTogglersFromDatabase ? 'text-red-500' : 'text-gray-500'} font-bold flex items-center focus:outline-none`} onClick={() => handleLikes(blogDetails._id)}>
+                        <button
+                            className="flex items-center space-x-2"
+                            onClick={() => handleLikes(blogDetails._id)}
+                        >
                             {likeToggler || likesTogglersFromDatabase ? (
-                                <img className='h-10 w-10 text-red-500' src={like} alt="liked" />
+                                <FaHeart className="text-red-500 transform hover:scale-110 transition duration-300" />
                             ) : (
-                                <img className='h-10 w-10 text-gray-500' src={unlike} alt="Disliked" />
+                                <FaRegHeart className="text-gray-500 hover:text-red-500 transform hover:scale-110 transition duration-300" />
                             )}
                             <span>{likesCount}</span>
                         </button>
 
-
-
+                        {/* Save Button */}
+                        <button
+                            className="text-gray-500 hover:text-blue-500 transition duration-300 transform hover:scale-110"
+                            onClick={() => handleSaveToUserProfile(blogDetails)}
+                        >
+                            <FaSave className="w-6 h-6" />
+                        </button>
                     </div>
 
-
-                </div>
-            </div>
-            {/* // comments section code */}
-
-            <div className="mt-8">
-                <h2 className="text-2xl font-bold mb-4">Hello ! {currentUser} Comment if the blog is helpful</h2>
-
-
-
-                {/* Add Comment Form */}
-                {
-                    writeComments && (
-
-                        <>
-
-
+                    {/* Comments Section */}
+                    <div className="mt-10">
+                        <h2 className="text-2xl font-bold mb-4 text-gray-800">
+                            Leave a Comment
+                        </h2>
+                        {writeComments && (
                             <form>
                                 <textarea
-                                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                                    className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 transition duration-300 ease-in-out"
                                     rows="4"
                                     placeholder="Add your comment..."
                                     value={newComment}
                                     onChange={handleCommentChange}
                                 ></textarea>
-                                {/* // making the add comment button as a dynamic button 
-                            for both editing and adding the comments
-                             */}
-
+                                {handleEdit === true ? (
+                                    <div className="flex mt-4 space-x-2">
+                                        <button
+                                            onClick={() => handleFinalEdit(particularCommentId)}
+                                            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+                                        >
+                                            Edit Comment
+                                        </button>
+                                        <button
+                                            onClick={handleCancelEdit}
+                                            className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={handleAddComment}
+                                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-4 rounded transition duration-300"
+                                    >
+                                        Add Comment
+                                    </button>
+                                )}
                             </form>
+                        )}
 
-                            {/* // handloing the form data from the outside */}
+                        {/* Display Comments */}
+                        {showComments && (
+                            <div className="mt-8">
+                                <h2 className="text-2xl font-bold mb-4 text-gray-800">
+                                    All Comments
+                                </h2>
+                                <div className="space-y-4">
+                                    {!loadMoreComments &&
+                                        allComments.slice(0, 3).map((comment, index) => (
+                                            <div
+                                                key={index}
+                                                className="p-4 border border-gray-200 rounded-lg bg-indigo-50 hover:bg-indigo-100 transition duration-300"
+                                            >
+                                                <p className="font-semibold mb-2 text-indigo-800">
+                                                    <FaUser className="inline mr-1 text-indigo-600" />{" "}
+                                                    {comment.author}
+                                                </p>
+                                                <p className="text-gray-700 mb-2">{comment.comment}</p>
+                                                <span className="text-sm text-gray-500">
+                                                    {new Date(comment.date).toLocaleString("en-US", {
+                                                        year: "numeric",
+                                                        month: "long",
+                                                        day: "numeric",
+                                                        hour: "numeric",
+                                                        minute: "numeric",
+                                                        hour12: true,
+                                                    })}
+                                                </span>
+                                                <div className="mt-4 flex space-x-4">
+                                                    {currentUser === comment.author && (
+                                                        <>
+                                                            <button
+                                                                className="text-blue-500 hover:underline"
+                                                                onClick={() =>
+                                                                    handleEditComment(comment.comment, comment._id)
+                                                                }
+                                                            >
+                                                                <FaEdit /> Edit
+                                                            </button>
+                                                            <button
+                                                                className="text-red-500 hover:underline"
+                                                                onClick={() => handleDeleteComment(comment._id)}
+                                                            >
+                                                                <FaTrashAlt /> Delete
+                                                            </button>
+                                                        </>
+                                                    )}
+                                                </div>
+                                                <CommentsReply comment={comment} />
+                                            </div>
+                                        ))}
 
+                                    {/* Load More Comments Button */}
+                                    {!loadMoreComments && (
+                                        <button
+                                            onClick={hanldeLoadMoreComments}
+                                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 mt-4"
+                                        >
+                                            Load All Comments
+                                        </button>
+                                    )}
 
-                            {handleEdit === true ? (
-                                <>
-                                    <button
-                                        onClick={() => handleFinalEdit(particularCommentId)}
-                                        type="submit"
-                                        className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
-                                    >
-                                        Edit Comment
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={handleCancelEdit}
-                                        className="mt-2 ml-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
-                                    >
-                                        Cancel
-                                    </button>
-                                </>
-                            ) : (
-                                <button
-                                    onClick={handleAddComment}
-                                    type="submit"
-                                    className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
-                                >
-                                    Add Comment
-                                </button>
-                            )}
-
-
-
-                        </>
-
-                    )
-                }
-            </div >
-            {/* showing the comments sections  */}
-
-            {
-                showComments && (
-                    <div>
-                        <h2 className="text-2xl font-bold mb-4">All Comments</h2>
-
-                        {/* //  thi sis the start section for the loading all the comments
- */}
-
-                        <div className="mt-4 flex justify-center">
-                            {
-                                !loadMoreComments && (<>  <button
-                                    onClick={hanldeLoadMoreComments}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
-                                >
-                                    Load All Comments
-                                </button></>)
-                            }
-                        </div>
-
-
-                        {/*  this is the end of the  getting the all the comments from the thi spost */}
-
-                        {!loadMoreComments && allComments.slice(0, 3).map((comment, index) => (
-                            <div key={index} className="border p-4 mb-4 rounded">
-                                <p className="text-lg font-bold mb-2">{comment.author}</p>
-                                <p className="text-gray-800 mb-2">{comment.comment}</p>
-
-                                <span className="text-gray-600 text-sm">
-                                    {!commentEdited && (<span>Posted on </span>)}  {new Date(comment.date).toLocaleString('en-US', {
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric',
-                                        hour: 'numeric',
-                                        minute: 'numeric',
-                                        hour12: true,
-
-                                    })}
-                                </span>
-                                <CommentsReply comment={comment} />
-
-
-
-                                {
-                                    currentUser === comment.author && (
-                                        <div className="mt-4 flex items-center space-x-4">
-                                            <button className="text-blue-500 hover:underline" onClick={() => handleEditComment(comment.comment, comment._id)}>
-                                                Edit Comment
-                                            </button>
-                                            <button className="text-red-500 hover:underline" onClick={() => handleDeleteComment(comment._id)}>
-                                                Delete Comment
-                                            </button>
-                                        </div>
-
-
-                                    )
-                                }
-
-
+                                    {loadMoreComments &&
+                                        allComments.map((comment, index) => (
+                                            <div
+                                                key={index}
+                                                className="p-4 border border-gray-200 rounded-lg bg-indigo-50 hover:bg-indigo-100 transition duration-300"
+                                            >
+                                                <p className="font-semibold mb-2 text-indigo-800">
+                                                    <FaUser className="inline mr-1 text-indigo-600" />{" "}
+                                                    {comment.author}
+                                                </p>
+                                                <p className="text-gray-700 mb-2">{comment.comment}</p>
+                                                <span className="text-sm text-gray-500">
+                                                    {new Date(comment.date).toLocaleString("en-US", {
+                                                        year: "numeric",
+                                                        month: "long",
+                                                        day: "numeric",
+                                                        hour: "numeric",
+                                                        minute: "numeric",
+                                                        hour12: true,
+                                                    })}
+                                                </span>
+                                                <div className="mt-4 flex space-x-4">
+                                                    {currentUser === comment.author && (
+                                                        <>
+                                                            <button
+                                                                className="text-blue-500 hover:underline"
+                                                                onClick={() =>
+                                                                    handleEditComment(comment.comment, comment._id)
+                                                                }
+                                                            >
+                                                                <FaEdit /> Edit
+                                                            </button>
+                                                            <button
+                                                                className="text-red-500 hover:underline"
+                                                                onClick={() => handleDeleteComment(comment._id)}
+                                                            >
+                                                                <FaTrashAlt /> Delete
+                                                            </button>
+                                                        </>
+                                                    )}
+                                                </div>
+                                                <CommentsReply comment={comment} />
+                                            </div>
+                                        ))}
+                                </div>
                             </div>
-                        ))}
+                        )}
+                    </div>
+                </div>
+                <ToastContainer />
+            </div>
+        </>
 
-                        {/* // al the comments start loadling function goes here */}
-
-                        {loadMoreComments && allComments.map((comment, index) => (
-                            <div key={index} className="border p-4 mb-4 rounded">
-                                <p className="text-lg font-bold mb-2">{comment.author}</p>
-                                <p className="text-gray-800 mb-2">{comment.comment}</p>
-
-                                <span className="text-gray-600 text-sm">
-                                    {!commentEdited && (<span>Posted on </span>)}  {new Date(comment.date).toLocaleString('en-US', {
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric',
-                                        hour: 'numeric',
-                                        minute: 'numeric',
-                                        hour12: true,
-
-                                    })}
-                                </span>
-                                <CommentsReply comment={comment} />
-
-
-
-                                {
-                                    currentUser === comment.author && (
-                                        <div className="mt-4 flex items-center space-x-4">
-                                            <button className="text-blue-500 hover:underline" onClick={() => handleEditComment(comment.comment, comment._id)}>
-                                                Edit Comment
-                                            </button>
-                                            <button className="text-red-500 hover:underline" onClick={() => handleDeleteComment(comment._id)}>
-                                                Delete Comment
-                                            </button>
-                                        </div>
-
-
-                                    )
-                                }
-
-
-                            </div>
-                        ))}
-
-                        {/* // al the comments ends loadling function goes here */}
-
-                    </div >
-
-                )
-            }
-
-
-
-
-
-
-            <ToastContainer />
-        </div>
     );
 }
 
