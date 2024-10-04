@@ -1,20 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { userProfile } from '../../utils/apiRoutes'; import {
-    FaHome,
-    FaMapMarkerAlt,
-    FaFlag,
-    FaGlobe,
-    FaPhone,
-    FaBriefcase,
-    FaEdit,
-    FaUserFriends,
-    FaUsers,
-    FaComments,
-    FaBookmark,
-    FaUsersCog,
-    FaShieldAlt
-} from 'react-icons/fa';
+import { userProfile } from '../../utils/apiRoutes';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -249,7 +235,7 @@ function UserProfile() {
         fetchUser();
 
 
-    }, []);
+    }, [handleFinalEdit, submit, handleEdit]);
 
 
     // printing the current user
@@ -336,110 +322,313 @@ function UserProfile() {
 
     return (
 
-        <div className="bg-gray-100 min-h-screen flex items-center justify-center py-8">
-            <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl w-full">
-                {/* Profile Header */}
-                <div className="text-center mb-6">
-                    <img
-                        src={currentUserProfile?.profileImage}
-                        alt="Profile"
-                        className="rounded-full w-32 h-32 mx-auto mb-4 object-cover shadow-lg"
-                    />
-                    <h2 className="text-4xl font-bold text-blue-700">{user?.username}'s Profile</h2>
-                    <p className="text-gray-500 text-sm">User ID: <span className="font-semibold">{currentUserProfile?.userId}</span></p>
-                </div>
+        <div>
 
-                {/* Main Content Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    {/* Personal Information */}
-                    <div className="bg-gray-50 p-4 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold border-b pb-2 text-gray-800">Personal Information</h3>
-                        <div className="flex flex-col space-y-2 mt-2">
-                            <p><FaHome className="inline mr-2 text-blue-500" /> <span className="font-medium">Village:</span> {currentUserProfile?.village}</p>
-                            <p><FaMapMarkerAlt className="inline mr-2 text-blue-500" /> <span className="font-medium">District:</span> {currentUserProfile?.districk}</p>
-                            <p><FaFlag className="inline mr-2 text-blue-500" /> <span className="font-medium">Pincode:</span> {currentUserProfile?.pincode}</p>
-                            <p><FaGlobe className="inline mr-2 text-blue-500" /> <span className="font-medium">State:</span> {currentUserProfile?.state}</p>
-                            <p><FaGlobe className="inline mr-2 text-blue-500" /> <span className="font-medium">Country:</span> {currentUserProfile?.country}</p>
-                            <p><FaPhone className="inline mr-2 text-blue-500" /> <span className="font-medium">Phone Number:</span> {currentUserProfile?.phoneNumber}</p>
+
+            {
+                profileCompleted === true ? (<>  <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+                    <div className="bg-white p-10 rounded shadow-md max-w-xxl">
+                        <div className="text-center mb-6">
+                            <img
+                                src={currentUserProfile?.profileImage}
+                                alt="Profile"
+                                className="rounded-full w-20 h-20 mx-auto mb-4 object-cover"
+                            />
+                            <h2 className="text-3xl font-bold text-blue-700">{user?.username}  Profile</h2>
+                            <p className="text-gray-500">User ID: {currentUserProfile?.userId}</p>
+                        </div>
+
+                        <div className="border-t-2 border-gray-200 pt-4">
+                            <div className="mb-4">
+                                <h3 className="text-lg font-semibold mb-2">Personal Information</h3>
+                                <p className="text-gray-700">
+                                    <span className="font-medium">Village:</span> {currentUserProfile?.village}
+                                </p>
+                                <p className="text-gray-700">
+                                    <span className="font-medium">District:</span> {currentUserProfile?.districk}
+                                </p>
+                                <p className="text-gray-700">
+                                    <span className="font-medium">Pincode:</span> {currentUserProfile?.pincode}
+                                </p>
+                                <p className="text-gray-700">
+                                    <span className="font-medium">State:</span> {currentUserProfile?.state}
+                                </p>
+                                <p className="text-gray-700">
+                                    <span className="font-medium">Country:</span> {currentUserProfile?.country}
+                                </p>
+                                <p className="text-gray-700">
+                                    <span className="font-medium">Phone Number:</span> {currentUserProfile?.phoneNumber}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="border-t-2 border-gray-200 pt-4">
+                            <div className="mb-4">
+                                <h3 className="text-lg font-semibold mb-2">Professional Information</h3>
+                                <p className="text-gray-700">
+                                    <span className="font-medium">Profession:</span> {currentUserProfile?.proffession}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="border-t-2 border-gray-200 pt-4">
+                            <div className="mb-4">
+                                <h3 className="text-lg font-semibold mb-2">About Me</h3>
+                                <p className="text-gray-700">{currentUserProfile?.about}</p>
+                                <div className='flex justify-between space-x-4'>
+
+
+
+
+                                    <button
+                                        className="bg-blue-500  hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+                                        onClick={handleEditProfile}
+                                    >
+                                        Edit Profile
+                                    </button>
+                                    <button
+                                        className="bg-blue-500  hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+                                        onClick={handleFollowers}
+                                    >
+                                        Followers
+                                    </button>
+                                    <button
+                                        className="bg-blue-500  hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+                                        onClick={handleFollowings}
+                                    >
+                                        Followings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="border-t-2 border-gray-200 pt-4">
+                            <div className="mb-4">
+                                <h3 className="text-lg font-semibold mb-2">Account Type</h3>
+                                <p className={`text-lg ${currentUserProfile?.accountType === 'public' ? 'text-green-500' : 'text-red-500'}`}>
+                                    {currentUserProfile?.accountType}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className='flex justify-between space-x-4'>
+                            <button
+                                className="bg-blue-500   hover:bg-blue-600  text-gray-50 text-font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4 flex items-center justify-center"
+                                onClick={handleRecentMessageOfAllUsers}
+                            >
+                                <img className='  text-gray-50 w-5 h-5 mr-2' src={message} alt="Message" />
+                                <span className="  text-gray-50">Message</span>
+                            </button>
+
+                            <button
+                                className="bg-blue-500  hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+                                onClick={handleMySavedPosts}
+                            >Saved Posts
+                            </button>
+
+                            <button
+                                className="bg-blue-500  hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+                                onClick={handleMyGroupsLists}
+                            >
+                                Groups
+                            </button>
+
+
                         </div>
                     </div>
-
-                    {/* Professional Information */}
-                    <div className="bg-gray-50 p-4 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold border-b pb-2 text-gray-800">Professional Information</h3>
-                        <p><FaBriefcase className="inline mr-2 text-blue-500" /> <span className="font-medium">Profession:</span> {currentUserProfile?.proffession}</p>
-                    </div>
-
-                    {/* About Me Section */}
-                    <div className="bg-gray-50 p-4 rounded-lg shadow-md col-span-1 md:col-span-2">
-                        <h3 className="text-lg font-semibold border-b pb-2 text-gray-800">About Me</h3>
-                        <p className="text-gray-700 mt-2">{currentUserProfile?.about}</p>
-                    </div>
-
-                    {/* Account Type Section */}
-                    <div className="bg-gray-50 p-4 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold border-b pb-2 text-gray-800">Account Type</h3>
-                        <p className={`text-lg ${currentUserProfile?.accountType === 'public' ? 'text-green-500' : 'text-red-500'}`}>
-                            <FaShieldAlt className="inline mr-2" /> {currentUserProfile?.accountType}
-                        </p>
-                    </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
-                        onClick={handleEditProfile}
-                    >
-                        <FaEdit className="inline mr-1" /> Edit Profile
-                    </button>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
-                        onClick={handleFollowers}
-                    >
-                        <FaUserFriends className="inline mr-1" /> Followers
-                    </button>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
-                        onClick={handleFollowings}
-                    >
-                        <FaUsers className="inline mr-1" /> Followings
-                    </button>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
-                        onClick={handleRecentMessageOfAllUsers}
-                    >
-                        <FaComments className="inline mr-1" /> Messages
-                    </button>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
-                        onClick={handleMySavedPosts}
-                    >
-                        <FaBookmark className="inline mr-1" /> Saved Posts
-                    </button>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
-                        onClick={handleMyGroupsLists}
-                    >
-                        <FaUsersCog className="inline mr-1" /> Groups
-                    </button>
-                </div>
+                    {
+                        !CreateGroupFlag && (<>
+                            <div className="flex flex-col items-center justify-center space-y-4">
+                                <h3 className="text-3xl font-semibold text-center text-gray-800 mb-4">
+                                    Click below to create groups
+                                </h3>
+                                <button
+                                    onClick={handleGroupCreations}
+                                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                                    Create Groups
+                                </button>
+                            </div>
+                        </>)
+                    }
 
-                {/* Group Creation Section */}
-                {!CreateGroupFlag && (
-                    <div className="text-center mt-6">
-                        <h3 className="text-2xl font-semibold text-gray-800 mb-4">Ready to connect?</h3>
-                        <button
-                            onClick={handleGroupCreations}
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
-                        >
-                            Create Groups
-                        </button>
-                    </div>
-                )}
-            </div>
+                </>) : (
+                    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
+
+                        <h2 className="text-2xl font-semibold mb-6">Dear  <span className='text-blue-700'>{`@${user?.username}`}</span> please complete your profile </h2>
+                        <form >
+
+                            <div className="mb-4">
+                                <label htmlFor="village" className="block text-sm font-medium text-gray-600">
+                                    profile Image Link
+                                </label>
+                                <input
+                                    value={profileImage}
+
+                                    onChange={(e) => {
+                                        setProfileImage(e.target.value);
+
+                                    }} type="text" id="village" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="village" className="block text-sm font-medium text-gray-600">
+                                    Village
+                                </label>
+                                <input onChange={(e) => {
+                                    setVillage(e.target.value);
+
+                                }} type="text" value={village} id="village" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="district" className="block text-sm font-medium text-gray-600">
+                                    District
+                                </label>
+                                <input onChange={(e) => {
+                                    setDistrick(e.target.value);
+
+                                }} type="text" value={districk} id="district" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="pincode" className="block text-sm font-medium text-gray-600">
+                                    Pincode
+                                </label>
+                                <input onChange={(e) => {
+                                    setPincode(e.target.value);
+
+                                }} type="text" value={pincode} id="pincode" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="state" className="block text-sm font-medium text-gray-600">
+                                    State
+                                </label>
+                                <input onChange={(e) => {
+                                    setState(e.target.value);
+
+                                }} type="text" value={state} id="state" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="country" className="block text-sm font-medium text-gray-600">
+                                    Country
+                                </label>
+                                <input onChange={(e) => {
+                                    setCountry(e.target.value);
+
+                                }} type="text" value={country} id="country" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="phone" className="block text-sm font-medium text-gray-600">
+                                    Phone Number
+                                </label>
+                                <input onChange={(e) => {
+                                    setPhoneNumber(e.target.value);
+
+                                }} type="tel" value={phoneNumber} id="phone" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="profession" className="block text-sm font-medium text-gray-600">
+                                    Profession
+                                </label>
+                                <input onChange={(e) => {
+                                    setProfession(e.target.value);
+
+                                }} type="text" value={proffession} id="profession" className="mt-1 p-2 w-full border rounded-md" />
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor="about" className="block text-sm font-medium text-gray-600">
+                                    About
+                                </label>
+                                <textarea onChange={(e) => {
+                                    setAbout(e.target.value);
+
+                                }} id="about" value={about} className="mt-1 p-2 w-full border rounded-md" rows="3"></textarea>
+                            </div>
+
+                            {/* //  showing the user profile base don the private and public choose 
+                     */}
+
+
+                            <div className="mb-4">
+                                <label htmlFor="public" className="block text-sm font-medium text-gray-600 mb-2">
+                                    Account Type:
+                                </label>
+
+                                <div>
+                                    <label className="inline-flex items-center mr-4">
+                                        <input
+
+                                            type="radio"
+                                            id="public"
+                                            value={accountType}
+                                            checked={accountType === 'public'}
+                                            onChange={() => handleAccountTypeChange('public')}
+                                            className="form-radio h-5 w-5 text-indigo-600"
+                                        />
+                                        <span className="ml-2 text-sm text-gray-700">Public</span>
+                                    </label>
+
+                                    <label className="inline-flex items-center">
+                                        <input
+                                            type="radio"
+                                            id="private"
+                                            value="private"
+
+                                            onChange={() => handleAccountTypeChange('private')}
+                                            className="form-radio h-5 w-5 text-indigo-600"
+                                        />
+                                        <span className="ml-2 text-sm text-gray-700">Private</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                        {
+                            handleEdit === true ? (<>  <button onClick={handleFinalEditProfile}
+                                type="submit"
+                                className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300"
+                            >
+                                save it
+                            </button></>) : (<>  <button onClick={handleSubmitForm}
+                                type="submit"
+                                className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300"
+                            >
+                                Submit
+                            </button></>)
+                        }
+                    </div>)
+            }
+
+
+
+
+
+            {/* <button
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+
+            >
+                Click to Chat
+            </button> */}
+
+
+            {/* this i have done to for the more good looks of my page */}
+
+            {
+                CreateGroupFlag && <AllUsers />
+            }
+
+
+
             <ToastContainer />
-        </div>
+
+
+        </div >
 
 
     );
