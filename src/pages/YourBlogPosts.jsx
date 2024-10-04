@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FaEdit, FaTrashAlt, FaEye, FaTag } from 'react-icons/fa'; // React icons
+
 import axios from 'axios';
 import { getBlogRoutes } from '../../utils/apiRoutes';
 import { useNavigate } from 'react-router-dom';
@@ -161,57 +163,87 @@ function YourBlogPosts() {
 
 
     return (
-        <div className="container mx-auto mt-10">
-            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="container mx-auto mt-10 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {blogs.map((blog, index) => (
-                    <div key={index} className="border p-4 rounded bg-white shadow hover:shadow-lg transition duration-300">
-                        <img src={blog.imageUrl} alt={blog.title} className="w-full h-32 object-cover mb-4 rounded" />
-                        <h2 className="text-xl font-bold mb-2">{blog.title}</h2>
-                        <p className="text-gray-600 mb-2">Author: {blog.author}</p>
-                        <p className="text-gray-500">Category: {blog.category}</p>
-                        <p className="text-gray-700 mt-2">{blog.content.slice(0, 15)}.......</p>
-                        <div className="flex flex-wrap mt-2">
-                            {blog.tags.map((tag, tagIndex) => (
-                                <span key={tagIndex} className="mr-2 text-green-500">{tag}</span>
+                    <div key={index} className="border p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                        {/* Blog Image */}
+                        <img
+                            src={blog.imageUrl}
+                            alt={blog.title}
+                            className="w-full h-48 object-cover mb-4 rounded-lg transition-transform duration-300 group-hover:scale-105"
+                        />
+
+                        {/* Blog Info */}
+                        <h2 className="text-2xl font-bold mb-2 text-indigo-900">{blog.title}</h2>
+                        <p className="text-gray-600 mb-2 flex items-center">
+                            <FaEye className="mr-2 text-indigo-600" /> Author: {blog.author}
+                        </p>
+                        <p className="text-gray-500 flex items-center mb-2">
+                            <FaTag className="mr-2 text-green-500" /> Category: {blog.category}
+                        </p>
+                        <p className="text-gray-700 mt-2">{blog.content.slice(0, 100)}...</p>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap mt-4">
+                            {blog.tags.slice(0, 4).map((tag, tagIndex) => (
+                                <span key={tagIndex} className="mr-2 text-green-600 bg-green-200 px-2 py-1 rounded-full text-sm">
+                                    #{tag}
+                                </span>
                             ))}
+                            {blog.tags.length > 4 && (
+                                <button className="text-blue-600 text-sm" onClick={() => alert('View more tags')}>
+                                    View More
+                                </button>
+                            )}
                         </div>
-                        {blog.featured && <p className="text-green-600 font-semibold mt-2">Featured</p>}
-                        <div className='flex  justify-between items-center space-x-10 sm:space-x-2 md:space-x-4 lg:space-x-6'>
-                            <button className="" onClick={() => handleBlogsDetails(blog._id)}>
-                                <img src={read} alt="read" className="w-10 h-10 hover:opacity-80 transition duration-300 shadow-md" />
+
+                        {/* Featured Badge */}
+                        {blog.featured && <p className="text-green-600 font-semibold mt-4">Featured Blog</p>}
+
+                        {/* Action Buttons */}
+                        <div className="flex justify-between items-center mt-6 space-x-4">
+                            {/* View */}
+                            <button onClick={() => handleBlogsDetails(blog._id)} className="p-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition duration-300">
+                                <FaEye className="w-6 h-6" />
                             </button>
-                            <button className="" onClick={() => handleBlogsEdit(blog._id)}>
-                                <img src={edit} alt="edit" className="w-10 h-10 hover:opacity-80 transition duration-300 shadow-md" />
+
+                            {/* Edit */}
+                            <button onClick={() => handleBlogsEdit(blog._id)} className="p-2 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition duration-300">
+                                <FaEdit className="w-6 h-6" />
                             </button>
-                            <button className="" onClick={openModal}>
-                                <img src={bin} alt="bin" className="w-10 h-10 hover:opacity-80 transition duration-300 shadow-md" />
+
+                            {/* Delete */}
+                            <button onClick={() => openModal(blog._id)} className="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-300">
+                                <FaTrashAlt className="w-6 h-6" />
                             </button>
                         </div>
 
-                        {/* my model popup code  start */}
-
-                        {isModalOpen && (
-                            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-                                <div className="bg-white p-4 rounded shadow-md">
-                                    <p>Are you sure you want to delete this blog?</p>
-                                    <div className="flex justify-end mt-2">
-                                        <button className="bg-gray-300 px-4 py-2 mr-2 rounded" onClick={closeModal}>
+                        {/* Modal for delete confirmation */}
+                        {isModalOpen && selectedBlogId === blog._id && (
+                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm mx-auto">
+                                    <p className="text-gray-800">Are you sure you want to delete this blog?</p>
+                                    <div className="flex justify-end mt-4">
+                                        <button className="bg-gray-300 px-4 py-2 rounded mr-2" onClick={closeModal}>
                                             Cancel
                                         </button>
-                                        <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleBlogDelete(blog._id)}>
+                                        <button
+                                            className="bg-red-500 text-white px-4 py-2 rounded"
+                                            onClick={() => {
+                                                handleBlogDelete(selectedBlogId);
+                                                closeModal();
+                                            }}
+                                        >
                                             Delete
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         )}
-
-                        {/* my popup model code end */}
                     </div>
                 ))}
             </div>
-
-
 
             <ToastContainer />
         </div>
