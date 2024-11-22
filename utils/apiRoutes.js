@@ -1,6 +1,13 @@
 
 export const host = 'https://backend-social-13bd.onrender.com';
 
+// import { host } from "../host/host";
+
+
+// import { host } from "./host/host";
+
+// export const host = "http://localhost:8080";
+
 
 
 // here we are defining the host of the main api

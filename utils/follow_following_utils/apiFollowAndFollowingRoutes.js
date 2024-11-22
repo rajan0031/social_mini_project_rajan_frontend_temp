@@ -3,7 +3,8 @@
 
 
 
-export const host = 'https://backend-social-13bd.onrender.com';
+// export const host = 'https://backend-social-13bd.onrender.com';
+import { host } from "../host/host";
 
 
 // api routes for the adding a follower in the database 

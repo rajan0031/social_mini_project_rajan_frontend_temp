@@ -4,7 +4,9 @@
 
 
 
-export const host = 'https://backend-social-13bd.onrender.com';
+// export const host = 'https://backend-social-13bd.onrender.com';
+
+import { host } from "../host/host";
 
 
 // making a frontend end point for the adding the message in the database

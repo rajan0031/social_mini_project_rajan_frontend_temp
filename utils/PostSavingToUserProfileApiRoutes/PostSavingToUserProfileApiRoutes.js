@@ -3,7 +3,9 @@
 
 
 
-export const host = 'https://backend-social-13bd.onrender.com';
+// export const host = 'https://backend-social-13bd.onrender.com';
+
+import { host } from "../host/host";
 
 
 // this is the apir outef for the sending the for the frontend data to the backedn

@@ -3,7 +3,9 @@
 
 
 
-export const host = 'https://backend-social-13bd.onrender.com';
+// export const host = 'https://backend-social-13bd.onrender.com';
+
+import { host } from "../host/host";
 
 
 // api route for edit of the message

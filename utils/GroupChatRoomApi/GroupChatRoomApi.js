@@ -3,7 +3,9 @@
 
 
 
-export const host = 'https://backend-social-13bd.onrender.com';
+// export const host = 'https://backend-social-13bd.onrender.com';
+
+import { host } from "../host/host";
 
 
 // now making an api for the adding the group message in the message database

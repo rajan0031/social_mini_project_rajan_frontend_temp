@@ -2,7 +2,9 @@
 // export const host = 'http://localhost:8080';
 
 
-export const host = 'https://backend-social-13bd.onrender.com';
+// export const host = 'https://backend-social-13bd.onrender.com';
+
+import { host } from "../host/host";
 
 
 
