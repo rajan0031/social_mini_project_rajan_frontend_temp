@@ -27,13 +27,13 @@ function Following() {
             });
 
             if (response) {
-                toast.info("You have unfollowed this user.");
+                toast.info("🌿 You have unfollowed this user.");
                 setFollowingsLists(prevList => prevList.filter(user => user.to !== to));
             }
 
         } catch (err) {
             console.log(err);
-            toast.error("Failed to unfollow. Please try again.");
+            toast.error("❌ Failed to unfollow. Please try again.");
         }
     };
 
@@ -55,52 +55,56 @@ function Following() {
     }, [user]);
 
     return (
-        <div className="container mx-auto p-6 bg-gray-50">
+        <div className="container mx-auto p-6 bg-green-50 min-h-screen">
             {/* Page Purpose Section */}
-            <div className="bg-blue-100 border border-blue-200 p-4 rounded-lg mb-6">
+            <div className="bg-green-100 border border-green-200 p-4 rounded-xl mb-6 shadow-sm">
                 <div className="flex items-center mb-2">
-                    <AiOutlineInfoCircle className="text-blue-500 text-3xl mr-3" />
-                    <h2 className="text-2xl font-semibold text-gray-800">About This Page</h2>
+                    <AiOutlineInfoCircle className="text-green-600 text-3xl mr-3" />
+                    <h2 className="text-2xl font-semibold text-green-900">🍃 About This Page</h2>
                 </div>
-                <p className="text-gray-700">
-                    This page shows you the list of users you are currently following. You can view their profile details and easily unfollow them if you choose to. Manage your connections and stay updated with people you follow.
+                <p className="text-green-800 text-sm leading-relaxed">
+                    🌼 This page shows the people you're following in the garden of connections. 🌿 View their profiles and unfollow if you want to prune your social circle. 💬
                 </p>
             </div>
 
             <div className="flex items-center mb-6">
-                <MdPersonAddAlt1 className="text-blue-500 text-4xl mr-3" />
-                <h1 className="text-3xl font-bold text-gray-800">Following</h1>
+                <MdPersonAddAlt1 className="text-green-600 text-4xl mr-3" />
+                <h1 className="text-3xl font-bold text-green-900">🌱 You're Following</h1>
             </div>
 
             {followingLists.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {followingLists.map((followingUser) => (
-                        <div key={followingUser._id} className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition duration-300">
+                        <div key={followingUser._id} className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 border border-green-100">
                             <img
                                 src={followingUser.profilePicture}
                                 alt={`${followingUser.toName}'s Profile`}
-                                className="w-16 h-16 object-cover rounded-full mx-auto mb-4"
+                                className="w-16 h-16 object-cover rounded-full mx-auto mb-4 shadow"
                             />
-                            <p className="text-lg font-bold text-center mb-2">{followingUser.toName}</p>
-                            <p className="text-sm text-gray-500 text-center mb-2">{followingUser.bio}</p>
-                            <div className="text-center text-blue-600 mb-4">
-                                <BsPersonSquare className="text-2xl inline" />
-                                <span className="ml-2">{followingUser.to}</span>
+                            <p className="text-lg font-bold text-center mb-1 text-green-800">
+                                🌿 {followingUser.toName}
+                            </p>
+                            <p className="text-sm text-green-600 text-center mb-2 italic">
+                                {followingUser.bio || "🌱 No bio added yet"}
+                            </p>
+                            <div className="text-center text-green-700 mb-4 text-xs">
+                                <BsPersonSquare className="inline text-xl mr-1" />
+                                <span>{followingUser.to}</span>
                             </div>
                             {/* Unfollow Button */}
                             <button
                                 onClick={() => handleRemove(followingUser.from, followingUser.to)}
-                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg mt-4 transition duration-300 w-full"
+                                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg mt-4 transition duration-300 w-full"
                             >
-                                <FaUserAltSlash className="inline mr-2" /> Unfollow
+                                <FaUserAltSlash className="inline mr-2" /> Unfollow ❌
                             </button>
                         </div>
                     ))}
                 </div>
             ) : (
                 <div className="text-center mt-10">
-                    <p className="text-gray-600 text-lg">
-                        You are not following anyone.
+                    <p className="text-green-700 text-lg">
+                        🪴 You are not following anyone yet. Start growing your community! 🌸
                     </p>
                 </div>
             )}

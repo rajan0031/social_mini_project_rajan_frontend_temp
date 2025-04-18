@@ -50,9 +50,9 @@ function GroupInformation() {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+            <div className="max-w-md mx-auto bg-green-50 shadow-lg rounded-lg overflow-hidden">
                 {/* Group Header */}
-                <div className="bg-gray-800 text-white p-4 flex items-center justify-center relative">
+                <div className="bg-green-800 text-white p-4 flex items-center justify-center relative">
                     <img
                         src={group.profileLink}
                         alt="Group Profile"
@@ -65,23 +65,23 @@ function GroupInformation() {
                 </div>
 
                 <div className="p-6">
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-2 flex items-center">
-                        <FaUsers className="mr-2 text-blue-500" /> {group.groupName}
+                    <h2 className="text-2xl font-semibold text-green-800 mb-2 flex items-center">
+                        <FaUsers className="mr-2 text-green-500" /> {group.groupName}
                     </h2>
-                    <p className="text-gray-600 mb-4">
-                        <FaInfoCircle className="text-blue-500 mr-2" />
+                    <p className="text-green-600 mb-4">
+                        <FaInfoCircle className="text-green-500 mr-2" />
                         {group.groupDescription}
                     </p>
 
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                            <FaUserCircle className="mr-2 text-green-500" /> Group Members
+                        <h3 className="text-lg font-semibold text-green-800 flex items-center">
+                            <FaUserCircle className="mr-2 text-green-500" /> Group Members 🌿
                         </h3>
                         <button
                             onClick={() => handleAddNewUserToGroup(group)}
-                            className="bg-blue-500 text-white px-3 py-2 rounded-full flex items-center space-x-1 hover:bg-blue-600 transition"
+                            className="bg-green-500 text-white px-3 py-2 rounded-full flex items-center space-x-1 hover:bg-green-600 transition"
                         >
-                            <FaUserPlus className="mr-1" /> Add Members
+                            <FaUserPlus className="mr-1" /> Add Members 🌱
                         </button>
                     </div>
 
@@ -92,18 +92,18 @@ function GroupInformation() {
                                     {group.admins.includes(member.username) ? (
                                         <div className="flex items-center">
                                             <FaUserShield className="text-green-500 mr-2" />
-                                            <p className="font-semibold text-gray-800 hover:text-blue-500 cursor-pointer">
-                                                {member.username} (Admin)
+                                            <p className="font-semibold text-green-800 hover:text-green-600 cursor-pointer">
+                                                {member.username} (Admin 🍃)
                                             </p>
                                         </div>
                                     ) : (
-                                        <p className="text-gray-800">{member.username}</p>
+                                        <p className="text-green-800">{member.username}</p>
                                     )}
                                 </div>
 
                                 <div className="flex items-center space-x-4">
                                     <button className="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600 transition">
-                                        View Profile
+                                        View Profile 🌸
                                     </button>
 
                                     {group.admins === localStorageUser?.username && (
@@ -126,21 +126,21 @@ function GroupInformation() {
                                 >
                                     <FaTimesCircle className="text-xl" />
                                 </button>
-                                <h2 className="text-xl font-bold text-gray-800 mb-4">Group Settings</h2>
+                                <h2 className="text-xl font-bold text-green-800 mb-4">🌱 Group Settings 🌿</h2>
                                 {/* Add Group Settings Content Here */}
                                 <div className="space-y-4">
-                                    <p className="text-gray-600 flex items-center">
-                                        <FaWrench className="mr-2 text-blue-500" /> Change group name, description, and profile picture.
+                                    <p className="text-green-600 flex items-center">
+                                        <FaWrench className="mr-2 text-green-500" /> Change group name, description, and profile picture 🍃.
                                     </p>
-                                    <p className="text-gray-600 flex items-center">
-                                        <FaUserShield className="mr-2 text-yellow-500" /> Manage admins and group permissions.
+                                    <p className="text-green-600 flex items-center">
+                                        <FaUserShield className="mr-2 text-green-500" /> Manage admins and group permissions 🌸.
                                     </p>
                                 </div>
                                 <button
                                     onClick={handleGroupSettings}
-                                    className="bg-blue-500 text-white mt-4 px-4 py-2 rounded-lg hover:bg-blue-600 transition w-full flex items-center justify-center"
+                                    className="bg-green-500 text-white mt-4 px-4 py-2 rounded-lg hover:bg-green-600 transition w-full flex items-center justify-center"
                                 >
-                                    <FaArrowCircleRight className="mr-2" /> Go to Settings
+                                    <FaArrowCircleRight className="mr-2" /> Go to Settings 🌿
                                 </button>
                             </div>
                         </div>
@@ -149,17 +149,17 @@ function GroupInformation() {
             </div>
 
             {/* Add Members Section */}
-            <div className="p-4 bg-gray-200 rounded-md shadow-md mt-6">
+            <div className="p-4 bg-green-100 rounded-md shadow-md mt-6">
                 {addMembersFlags ? (
                     <AddNewMembersToGroup group={group} />
                 ) : (
                     <div className="text-center">
-                        <h2 className="text-lg text-gray-700 mb-4">Want to add new members?</h2>
+                        <h2 className="text-lg text-green-700 mb-4">🌱 Want to add new members? 🌸</h2>
                         <button
                             onClick={() => handleAddNewUserToGroup(group)}
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center space-x-2 transition"
+                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg flex items-center space-x-2 transition"
                         >
-                            <FaUserPlus className="mr-1" /> Add Members
+                            <FaUserPlus className="mr-1" /> Add Members 🌿
                         </button>
                     </div>
                 )}

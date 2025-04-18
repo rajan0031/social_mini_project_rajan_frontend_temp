@@ -3,46 +3,46 @@ import { FaRegThumbsUp, FaComments, FaShieldAlt, FaUsers } from 'react-icons/fa'
 
 export default function DifferenceFromOtherSocialMedia() {
     return (
-        <div className="bg-gray-100 py-10">
+        <div className="bg-gradient-to-br from-green-50 to-white py-12">
             <div className="container mx-auto px-4">
-                <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-                    Why LibertyPost Stands Out! 🌟
+                <h1 className="text-4xl font-bold text-center mb-8 text-green-700 tracking-wide">
+                    🍀 Why LibertyPost Stands Out! 🌟
                 </h1>
-                <p className="text-lg text-center mb-6 text-gray-600">
-                    LibertyPost is not just another social media platform. We are dedicated to fostering a community where every voice matters! 🗣️💬
+                <p className="text-lg text-center mb-10 text-gray-700 max-w-2xl mx-auto">
+                    LibertyPost is not just another social media platform. We’re a 🌸 community garden 🌸 where every thought blossoms and every voice is nurtured! 🗣️💬✨
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md">
-                        <FaRegThumbsUp size={50} className="text-blue-600 mb-3" />
-                        <h2 className="text-xl font-semibold">Freedom to Express! ✊</h2>
+                    <div className="flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl border border-green-100 hover:shadow-2xl transition duration-300">
+                        <FaRegThumbsUp size={50} className="text-blue-500 mb-4" />
+                        <h2 className="text-xl font-semibold text-green-700 mb-2">Freedom to Express! ✊</h2>
                         <p className="text-gray-600 text-center">
-                            Unlike other platforms, we celebrate every voice, allowing users to share all kinds of concerns without fear.
+                            🌿 Celebrate every thought 🌿 — share freely without fear. Your voice matters here.
                         </p>
                     </div>
-                    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md">
-                        <FaComments size={50} className="text-green-600 mb-3" />
-                        <h2 className="text-xl font-semibold">No Censorship! 🚫</h2>
+                    <div className="flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl border border-green-100 hover:shadow-2xl transition duration-300">
+                        <FaComments size={50} className="text-green-600 mb-4" />
+                        <h2 className="text-xl font-semibold text-green-700 mb-2">No Censorship! 🚫</h2>
                         <p className="text-gray-600 text-center">
-                            Here, no leader or politician will be deactivated for speaking positively. All constructive criticism is welcome!
+                            💬 Speak openly 💬 — constructive vibes only, no silencing here!
                         </p>
                     </div>
-                    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md">
-                        <FaShieldAlt size={50} className="text-red-600 mb-3" />
-                        <h2 className="text-xl font-semibold">Safe Community! 🔒</h2>
+                    <div className="flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl border border-green-100 hover:shadow-2xl transition duration-300">
+                        <FaShieldAlt size={50} className="text-red-500 mb-4" />
+                        <h2 className="text-xl font-semibold text-green-700 mb-2">Safe Community! 🔒</h2>
                         <p className="text-gray-600 text-center">
-                            We ensure a safe environment where harmful content is moderated, and users feel secure expressing their thoughts.
+                            🛡️ Feel protected 🛡️ — we moderate the weeds, so your ideas bloom safely.
                         </p>
                     </div>
-                    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md">
-                        <FaUsers size={50} className="text-purple-600 mb-3" />
-                        <h2 className="text-xl font-semibold">Connect & Collaborate! 🤝</h2>
+                    <div className="flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl border border-green-100 hover:shadow-2xl transition duration-300">
+                        <FaUsers size={50} className="text-purple-600 mb-4" />
+                        <h2 className="text-xl font-semibold text-green-700 mb-2">Connect & Collaborate! 🤝</h2>
                         <p className="text-gray-600 text-center">
-                            Join a vibrant community of like-minded individuals who share your passion for open dialogue and creativity.
+                            🌈 Grow together 🌈 — build connections and spark creativity with kindred spirits!
                         </p>
                     </div>
                 </div>
-                <p className="mt-8 text-gray-700 text-center">
-                    Embrace the freedom of expression and be part of a platform that values your voice! 🚀🌈
+                <p className="mt-12 text-center text-green-800 text-lg font-medium">
+                    🌻 Embrace the freedom of expression & join the platform where your voice blossoms! 🚀✨
                 </p>
             </div>
         </div>

@@ -34,15 +34,15 @@ const SearchResultCard = ({ result, currentUser, onBlogDetails }) => {
 
     return (
         <div 
-            className="border p-4 rounded bg-white shadow hover:shadow-lg transition duration-300 cursor-pointer"
-            onClick={handleCardClick} // Make the entire card clickable
+            className="border p-4 rounded bg-green-50 shadow hover:shadow-lg transition duration-300 cursor-pointer"
+            onClick={handleCardClick}
         >
             <img src={result.imageUrl} alt={result.title} className="w-full h-32 object-cover mb-4 rounded" />
-            <h2 className="text-xl font-bold mb-2">{result.title}</h2>
+            <h2 className="text-xl font-bold mb-2 text-green-800">{result.title}</h2>
             <button onClick={() => handleAuthorProfile(result)}>
-                <p className="text-gray-600 mb-2">{result.author}</p>
+                <p className="text-green-600 mb-2 hover:underline">{result.author}</p>
             </button>
-            <p className="text-gray-500">{result.category}</p>
+            <p className="text-green-500 italic">{result.category}</p>
             <div className="flex mt-4 space-x-2 flex-wrap">
                 {result.tags.slice(0, showAllTags ? result.tags.length : 4).map((tag, tagIndex) => (
                     <button
@@ -55,16 +55,22 @@ const SearchResultCard = ({ result, currentUser, onBlogDetails }) => {
                 ))}
                 {result.tags.length > 4 && !showAllTags && (
                     <button 
-                        onClick={toggleTags}
-                        className="text-blue-500 text-sm underline"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            toggleTags();
+                        }}
+                        className="text-green-600 text-sm underline"
                     >
                         Show More
                     </button>
                 )}
                 {showAllTags && (
                     <button 
-                        onClick={toggleTags}
-                        className="text-blue-500 text-sm underline"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            toggleTags();
+                        }}
+                        className="text-green-600 text-sm underline"
                     >
                         Show Less
                     </button>

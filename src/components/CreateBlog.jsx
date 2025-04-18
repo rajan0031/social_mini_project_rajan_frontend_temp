@@ -52,15 +52,15 @@ function CreateBlog() {
                 });
 
                 if (response.data.status) {
-                    toast.success(`${response.data.message}`);
+                    toast.success(`${response.data.message} 🌱`);
                     navigate("/myblogs");
                 } else {
-                    toast.error(`${response.data.message}`);
+                    toast.error(`${response.data.message} ❌`);
                 }
             }
         } catch (err) {
             console.log(err);
-            toast.error('Error creating blog post');
+            toast.error('Error creating blog post 😞');
         }
     };
 
@@ -90,8 +90,8 @@ function CreateBlog() {
                 {/* Left and Right Sections */}
                 <div className="flex flex-col md:flex-row gap-6 mb-8">
                     {/* Left Section: What to Write */}
-                    <div className="flex-1 bg-blue-50 p-4 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-bold mb-2 text-blue-600">📝 What to Write</h3>
+                    <div className="flex-1 bg-green-50 p-4 rounded-lg shadow-lg">
+                        <h3 className="text-xl font-bold mb-2 text-green-600">📝 What to Write</h3>
                         <ul className="list-disc list-inside text-gray-700">
                             <li>Share your unique experiences and insights! 🌟</li>
                             <li>Engage with readers through questions and discussions! 💬</li>
@@ -114,38 +114,38 @@ function CreateBlog() {
 
                 {/* Center Section: Blog Form */}
                 <div className="bg-white p-4 rounded-lg shadow-lg">
-                    <h2 className="text-2xl font-semibold mb-4 text-center text-blue-700">📚 Create a New Blog</h2>
+                    <h2 className="text-2xl font-semibold mb-4 text-center text-green-700">📚 Create a New Blog</h2>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         {/* Title Input */}
                         <div>
                             <label htmlFor="title" className="block text-gray-700 font-bold mb-1 flex items-center">
-                                <FaPencilAlt className="mr-2 text-blue-600" /> Title
+                                <FaPencilAlt className="mr-2 text-green-600" /> Title
                             </label>
-                            <input type="text" id="title" placeholder="Enter blog title" onChange={(e) => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition duration-300 shadow-md" />
+                            <input type="text" id="title" placeholder="Enter blog title" onChange={(e) => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-green-500 transition duration-300 shadow-md" />
                         </div>
 
                         {/* Author Input */}
                         <div>
                             <label htmlFor="author" className="block text-gray-700 font-bold mb-1 flex items-center">
-                                <FaUser className="mr-2 text-blue-600" /> Author
+                                <FaUser className="mr-2 text-green-600" /> Author
                             </label>
-                            <input type="text" id="author" placeholder="Enter author name" onChange={(e) => setAuthor(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition duration-300 shadow-md" />
+                            <input type="text" id="author" placeholder="Enter author name" onChange={(e) => setAuthor(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-green-500 transition duration-300 shadow-md" />
                         </div>
 
                         {/* Date Input */}
                         <div>
                             <label htmlFor="date" className="block text-gray-700 font-bold mb-1 flex items-center">
-                                <FaCalendarAlt className="mr-2 text-blue-600" /> Date
+                                <FaCalendarAlt className="mr-2 text-green-600" /> Date
                             </label>
-                            <input type="date" id="date" onChange={(e) => setDate(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition duration-300 shadow-md" />
+                            <input type="date" id="date" onChange={(e) => setDate(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-green-500 transition duration-300 shadow-md" />
                         </div>
 
                         {/* Category Select */}
                         <div>
                             <label htmlFor="category" className="block text-gray-700 font-bold mb-1 flex items-center">
-                                <FaTags className="mr-2 text-blue-600" /> Category <FaQuestionCircle className="ml-2 text-gray-500" title="Select a relevant category for your blog!" />
+                                <FaTags className="mr-2 text-green-600" /> Category <FaQuestionCircle className="ml-2 text-gray-500" title="Select a relevant category for your blog!" />
                             </label>
-                            <select id="category" onChange={(e) => setCategory(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition duration-300 shadow-md">
+                            <select id="category" onChange={(e) => setCategory(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-green-500 transition duration-300 shadow-md">
                                 <option value="" disabled>Select one</option>
                                 {tagOptions.map((option) => (
                                     <option key={option} value={option.toLowerCase()}>{option}</option>
@@ -162,12 +162,12 @@ function CreateBlog() {
                         {/* Tags Selection */}
                         <div>
                             <label className="block text-gray-700 font-bold mb-1 flex items-center">
-                                <FaTags className="mr-2 text-blue-600" /> Tags <FaQuestionCircle className="ml-2 text-gray-500" title="Select relevant tags for your blog!" />
+                                <FaTags className="mr-2 text-green-600" /> Tags <FaQuestionCircle className="ml-2 text-gray-500" title="Select relevant tags for your blog!" />
                             </label>
                             <div className="flex flex-wrap">
                                 {tagOptions.map((tag) => (
                                     <label key={tag} className="inline-flex items-center mr-4 mb-2 cursor-pointer">
-                                        <input type="checkbox" checked={tags.includes(tag)} onChange={() => handleTagChange(tag)} className="form-checkbox h-5 w-5 text-blue-500" />
+                                        <input type="checkbox" checked={tags.includes(tag)} onChange={() => handleTagChange(tag)} className="form-checkbox h-5 w-5 text-green-500" />
                                         <span className="ml-2 text-gray-800">{tag}</span>
                                     </label>
                                 ))}
@@ -177,9 +177,9 @@ function CreateBlog() {
                         {/* Image URL Input */}
                         <div>
                             <label htmlFor="imageURL" className="block text-gray-700 font-bold mb-1 flex items-center">
-                                <FaImage className="mr-2 text-blue-600" /> Image URL <FaQuestionCircle className="ml-2 text-gray-500" title="Provide a link to the blog's featured image!" />
+                                <FaImage className="mr-2 text-green-600" /> Image URL <FaQuestionCircle className="ml-2 text-gray-500" title="Provide a link to the blog's featured image!" />
                             </label>
-                            <input type="text" id="imageURL" placeholder="🖼️ Enter image URL" onChange={(e) => setImageURL(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition duration-300 shadow-md" />
+                            <input type="text" id="imageURL" placeholder="🖼️ Enter image URL" onChange={(e) => setImageURL(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-green-500 transition duration-300 shadow-md" />
                         </div>
 
                         {/* Featured Checkbox */}
@@ -189,7 +189,7 @@ function CreateBlog() {
                         </div>
 
                         {/* Submit Button */}
-                        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 w-full transition duration-300 flex items-center justify-center">
+                        <button type="submit" className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-300 w-full transition duration-300 flex items-center justify-center">
                             <FaCheckCircle className="mr-2" /> 📨 Submit
                         </button>
                     </form>

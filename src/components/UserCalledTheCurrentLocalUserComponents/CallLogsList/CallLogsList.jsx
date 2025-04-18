@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaPhoneAlt, FaPhoneSlash } from 'react-icons/fa'; // Importing React icons
 
 const CallLogsList = ({ allCallLogsFromOtherUsers, handleJoinCall, handleLeaveCall }) => {
     return (
@@ -10,28 +11,30 @@ const CallLogsList = ({ allCallLogsFromOtherUsers, handleJoinCall, handleLeaveCa
                             key={callLog._id}
                             className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transform hover:-translate-y-1 transition duration-300 ease-in-out"
                         >
-                            <p className="text-lg font-semibold text-gray-800">Call ID: {callLog._id}</p>
-                            <p className="text-gray-600">Caller ID: {callLog.from}</p>
-                            <p className="text-gray-600">Receiver ID: {callLog.to}</p>
+                            <p className="text-lg font-semibold text-gray-800">🌿 Call ID: {callLog._id} 🌿</p>
+                            <p className="text-gray-600">👤 Caller ID: {callLog.from}</p>
+                            <p className="text-gray-600">📱 Receiver ID: {callLog.to}</p>
                             <div className="flex space-x-4 mt-3">
                                 <button
                                     onClick={() => handleJoinCall(callLog)}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 >
-                                    Join Call <span role="img" aria-label="join call">📞</span>
+                                    <FaPhoneAlt className="inline-block mr-2" />
+                                    Join Call 📞
                                 </button>
                                 <button
                                     onClick={() => handleLeaveCall(callLog)}
                                     className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 >
-                                    Leave Call <span role="img" aria-label="leave call">❌</span>
+                                    <FaPhoneSlash className="inline-block mr-2" />
+                                    Leave Call ❌
                                 </button>
                             </div>
                         </div>
                     ))}
                 </div>
             ) : (
-                <p className="text-gray-600">No users called you.</p>
+                <p className="text-gray-600 text-center mt-5">No users called you. 🌸</p>
             )}
         </div>
     );

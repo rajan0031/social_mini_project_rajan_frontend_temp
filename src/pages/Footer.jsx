@@ -11,36 +11,36 @@ function Footer() {
                 {/* Upper Content Section */}
                 <div className="mb-8 md:mb-0">
                     <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                        Join Our LibertyPost Community! 🎉
+                        Join Our LibertyPost Community! 🎉🌿
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Stay updated with the latest insights and engage with diverse topics.
-                        Subscribe to our newsletter for exclusive content! 📧
+                        Stay updated with the latest insights and engage with diverse topics. 🌱 
+                        Subscribe to our newsletter for exclusive content! 📧✨
                     </p>
                 </div>
 
                 {/* Quick Links */}
                 <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:mt-0">
-                    <li><a href="/AboutUs" className="hover:underline me-4 md:me-6">About Us 🌐</a></li>
-                    <li><a href="/PrivacyPolicy" className="hover:underline me-4 md:me-6">Privacy Policy 🔒</a></li>
-                    <li><a href="/Terms" className="hover:underline me-4 md:me-6">Terms of Service 📜</a></li>
-                    <li><a href="/ContactUs" className="hover:underline">Contact Us 📞</a></li>
+                    <li><a href="/AboutUs" className="hover:underline me-4 md:me-6">About Us 🌐🌿</a></li>
+                    <li><a href="/PrivacyPolicy" className="hover:underline me-4 md:me-6">Privacy Policy 🔒🌱</a></li>
+                    <li><a href="/Terms" className="hover:underline me-4 md:me-6">Terms of Service 📜🌿</a></li>
+                    <li><a href="/ContactUs" className="hover:underline">Contact Us 📞🌸</a></li>
                 </ul>
 
                 {/* Contact Information */}
                 <div className="mt-8 md:mt-0">
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-200">Contact Us 📫</h3>
+                    <h3 className="font-semibold text-gray-800 dark:text-gray-200">Contact Us 📫🌿</h3>
                     <div className="flex items-center space-x-2 text-gray-500 dark:text-gray-400">
                         <AiFillPhone size={20} />
-                        <span>+91 9838208697</span>
+                        <span>+91 9838208697 📱</span>
                     </div>
                     <div className="flex items-center space-x-2 mt-2 text-gray-500 dark:text-gray-400">
                         <IoLocationSharp size={20} />
-                        <span>Gurur Jambheshwar University of Science and Technology, Hostel 3, Near Library</span>
+                        <span>Gurur Jambheshwar University of Science and Technology, Hostel 3, Near Library 🌳</span>
                     </div>
                     <div className="flex items-center space-x-2 mt-2 text-gray-500 dark:text-gray-400">
                         <MdEmail size={20} />
-                        <span><a href="mailto:raykushwaha0031@gmail.com" className="hover:underline">raykushwaha0031@gmail.com</a></span>
+                        <span><a href="mailto:raykushwaha0031@gmail.com" className="hover:underline">raykushwaha0031@gmail.com 📧</a></span>
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@ function Footer() {
             {/* Copyright Section */}
             <div className="bg-gray-700 py-4 text-center">
                 <p className="text-sm text-gray-200">
-                    © {new Date().getFullYear()} LibertyPost. All Rights Reserved. ✨
+                    © {new Date().getFullYear()} LibertyPost. All Rights Reserved. ✨🌱
                 </p>
             </div>
         </div>

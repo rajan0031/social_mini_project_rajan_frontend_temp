@@ -3,19 +3,19 @@ import { FaSearch, FaRegLightbulb } from 'react-icons/fa';
 
 const IntroSection = () => {
     return (
-        <div className="mb-8 text-center bg-gray-100 p-4 rounded-md shadow-md">
-            <h1 className="text-3xl font-bold mb-2">Explore Your Interests! 🔍</h1>
-            <p className="text-lg text-gray-600 mb-4">
-                Discover a variety of blog posts tailored to your interests. Use the search results below to find content that resonates with you! 💡
+        <div className="mb-8 text-center bg-green-50 p-4 rounded-md shadow-md">
+            <h1 className="text-3xl font-bold mb-2 text-green-800">Discover Nature’s Secrets 🌿</h1>
+            <p className="text-lg text-green-700 mb-4">
+                Browse through a wealth of herbal insights, AI-analyzed plant data, and real remedies. Start your green journey now! 🌱💡
             </p>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center space-x-6">
                 <div className="flex items-center">
-                    <FaSearch className="text-indigo-500 w-6 h-6 mr-2" />
-                    <span className="text-gray-700">Search through a vast collection of blogs.</span>
+                    <FaSearch className="text-emerald-500 w-6 h-6 mr-2" />
+                    <span className="text-green-700">Use AI to explore medicinal plants & herbs.</span>
                 </div>
                 <div className="flex items-center">
-                    <FaRegLightbulb className="text-yellow-500 w-6 h-6 mr-2" />
-                    <span className="text-gray-700">Get inspired and share your insights!</span>
+                    <FaRegLightbulb className="text-lime-500 w-6 h-6 mr-2" />
+                    <span className="text-green-700">Get natural healing ideas & share your findings.</span>
                 </div>
             </div>
         </div>

@@ -14,7 +14,6 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import { RiGroupLine } from 'react-icons/ri';
 
 function AddNewMembersToGroup({ group }) {
-    // useState hooks for managing state
     const [AllusersFromDataBase, setAllUsersFromDataBase] = useState([]);
     const [AddUserFlag, setAddUserFlag] = useState([]);
     const [usersArray, setUsersArray] = useState([]);
@@ -22,7 +21,6 @@ function AddNewMembersToGroup({ group }) {
     const [GroupData, setGroupData] = useState();
     const navigate = useNavigate();
 
-    // Fetch users from the database
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -35,7 +33,6 @@ function AddNewMembersToGroup({ group }) {
         fetchUsers();
     }, []);
 
-    // Function to handle adding new members
     const handleAddNewMember = (user, index) => {
         const newFlags = [...AddUserFlag];
         newFlags[index] = true;
@@ -43,7 +40,6 @@ function AddNewMembersToGroup({ group }) {
         setUsersArray(prev => [...prev, user]);
     };
 
-    // Function to add members to the group
     const addMemberToGroup = async () => {
         try {
             const response = await axios.post(`${addANewMemberToGroup}`, {
@@ -51,43 +47,45 @@ function AddNewMembersToGroup({ group }) {
                 groupId: group._id,
             });
             if (response) {
-                toast.success("Member added successfully!");
+                toast.success("🌼 Member added successfully!");
             }
         } catch (err) {
             console.log(err);
-            toast.error("Failed to add member. Please try again!");
+            toast.error("🌧️ Failed to add member. Please try again!");
         }
         navigate("/userprofile");
     };
 
     return (
         <>
-            <section className="bg-gray-50 p-6">
-                <div className="flex items-center justify-center mb-6">
-                    <MdGroupAdd className="text-blue-600 text-3xl mr-2" />
-                    <h1 className="text-2xl font-bold text-gray-800">Add New Members to Your Group</h1>
+            <section className="bg-gradient-to-br from-green-50 via-white to-green-100 min-h-screen p-8">
+                <div className="flex items-center justify-center mb-8">
+                    <MdGroupAdd className="text-green-600 text-4xl mr-3" />
+                    <h1 className="text-3xl font-extrabold text-green-800 drop-shadow">
+                        🌱 Add New Members to Your Group 🌼
+                    </h1>
                 </div>
 
-                <p className="text-center text-gray-600 mb-6">
-                    Invite people to join <strong>{group.groupName}</strong> and grow your community!
-                    <BsFillPeopleFill className="inline text-blue-500 text-2xl ml-2" />
+                <p className="text-center text-green-700 font-medium mb-8">
+                    🍃 Invite amazing people to join <strong>{group.groupName}</strong> and make your community bloom! 🌸
+                    <BsFillPeopleFill className="inline text-green-500 text-2xl ml-2" />
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {AllusersFromDataBase && AllusersFromDataBase.map((user, index) => (
-                        <div key={index} className="bg-white shadow-md rounded-lg p-4 hover:shadow-xl transition-shadow duration-300">
+                        <div key={index} className="bg-white border border-green-200 shadow-lg rounded-xl p-5 hover:shadow-2xl transition duration-300">
                             <div className="flex items-center">
-                                <FaUserCircle className="text-blue-500 text-3xl mr-3" />
+                                <FaUserCircle className="text-green-500 text-4xl mr-4" />
                                 <div>
-                                    <p className="font-bold text-gray-800">{user.username}</p>
-                                    <p className="text-gray-600 text-sm">{user.email}</p>
+                                    <p className="font-semibold text-green-900 text-lg">{user.username} 🌿</p>
+                                    <p className="text-green-600 text-sm">{user.email}</p>
                                 </div>
                             </div>
 
-                            <div className="mt-4 flex justify-between items-center">
+                            <div className="mt-6 flex justify-end">
                                 {AddUserFlag[index] === true ? (
                                     <button
-                                        className="bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition-colors duration-200"
+                                        className="bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition-all"
                                         onClick={() => {
                                             const newFlags = [...AddUserFlag];
                                             newFlags[index] = false;
@@ -95,14 +93,14 @@ function AddNewMembersToGroup({ group }) {
                                             setUsersArray(usersArray.filter(u => u._id !== user._id));
                                         }}
                                     >
-                                        <FaUserTimes className="inline mr-2" /> Remove
+                                        <FaUserTimes className="inline mr-2" /> ❌ Remove
                                     </button>
                                 ) : (
                                     <button
-                                        className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-colors duration-200"
+                                        className="bg-green-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-700 transition-all"
                                         onClick={() => handleAddNewMember(user, index)}
                                     >
-                                        <FaUserPlus className="inline mr-2" /> Add
+                                        <FaUserPlus className="inline mr-2" /> 🌸 Add
                                     </button>
                                 )}
                             </div>
@@ -110,20 +108,24 @@ function AddNewMembersToGroup({ group }) {
                     ))}
                 </div>
 
-                <div className="mt-8 text-center">
+                <div className="mt-12 text-center">
                     {usersArray.length > 0 ? (
                         <>
-                            <AiFillCheckCircle className="text-green-500 text-3xl mb-2 inline" />
-                            <p className="text-gray-700 font-semibold">You’ve selected {usersArray.length} user(s) to add to the group.</p>
+                            <AiFillCheckCircle className="text-green-500 text-4xl mb-3 inline" />
+                            <p className="text-green-800 font-bold text-lg">
+                                🌟 You’ve selected {usersArray.length} member(s) to join the garden! 🌼
+                            </p>
                             <button
-                                className="bg-green-500 text-white px-6 py-2 rounded-md mt-4 shadow-md hover:bg-green-600 transition-colors duration-200"
+                                className="bg-emerald-600 text-white px-8 py-3 mt-4 rounded-lg shadow-md hover:bg-emerald-700 transition duration-200"
                                 onClick={addMemberToGroup}
                             >
-                                <FaUsers className="inline mr-2" /> Confirm & Add Members
+                                <FaUsers className="inline mr-2" /> ✅ Confirm & Add Members
                             </button>
                         </>
                     ) : (
-                        <p className="text-gray-600">No members selected. Please select at least one user to add to the group.</p>
+                        <p className="text-green-600 italic">
+                            🍂 No one selected yet... Let's add someone and make the group bloom!
+                        </p>
                     )}
                 </div>
             </section>

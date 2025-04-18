@@ -53,43 +53,43 @@ function AllUsers() {
                 socketId: socket.id,
             },
         });
-    }
+    };
 
     const handleUserAddButton = (user) => {
         setAddedUsers(prevState => ({
             ...prevState,
             [user._id]: user
         }));
-        toast.success(`✅ ${user.username} has been added to your group!`);
-    }
+        toast.success(`🌿 ${user.username} added to your herbal group!`);
+    };
 
     const handleCreateGroupButton = () => {
         setAddUserFlag(true);
-    }
+    };
 
     return (
         <div className="container mx-auto mt-8">
-            <h1 className="text-4xl font-bold mb-8 text-center">All Users</h1>
-            <p className="text-lg text-gray-600 text-center mb-6">
-                Welcome to the user management page! Here you can view all users and create groups by adding them.
-                Let's connect and collaborate! 🤝
+            <h1 className="text-4xl font-bold mb-6 text-center text-green-800">🌱 Meet Our Plant Lovers 🌱</h1>
+            <p className="text-lg text-green-700 text-center mb-6">
+                These green minds are exploring herbs, healing, and harmony. Connect, chat, and grow your herbal network 🌿✨
             </p>
+
             {allUsers.length > 0 ? (
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {allUsers.map((user) => (
-                            <div key={user._id} className="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+                            <div key={user._id} className="bg-green-50 rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
                                 <div className="p-6">
-                                    <div className="text-3xl font-bold text-center mb-4">{user.username}</div>
+                                    <div className="text-2xl font-bold text-center text-green-900 mb-4">{user.username}</div>
                                     <div className='flex justify-center mb-4'>
-                                        <img src={user.profilePicture || "/path/to/default/image.png"} alt={`${user.username}'s profile`} className="rounded-full w-16 h-16" />
+                                        <img src={user.profilePicture || "/path/to/default/image.png"} alt={`${user.username}'s profile`} className="rounded-full w-16 h-16 border border-green-500" />
                                     </div>
                                     <div className='flex space-x-4 justify-center'>
-                                        <button onClick={() => handleDirectMessage(user)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center">
+                                        <button onClick={() => handleDirectMessage(user)} className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
                                             <img src={messageIcon} alt="message icon" className='w-5 h-5 mr-1' />
-                                            Message
+                                            Chat
                                         </button>
-                                        <button onClick={() => handleUserAddButton(user)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center">
+                                        <button onClick={() => handleUserAddButton(user)} className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
                                             <img src={addUserIcon} alt="add user icon" className='w-5 h-5 mr-1' />
                                             Add
                                         </button>
@@ -100,23 +100,23 @@ function AllUsers() {
                     </div>
 
                     {addUserFlag === false && (
-                        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md text-center mt-6">
-                            <h4 className="text-lg font-semibold mb-4">Ready to create a new group?</h4>
-                            <button onClick={handleCreateGroupButton} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                                Create Group
+                        <div className="max-w-md mx-auto p-6 bg-green-100 rounded-lg shadow-md text-center mt-6">
+                            <h4 className="text-lg font-semibold text-green-800 mb-4">Ready to create your herbal tribe?</h4>
+                            <button onClick={handleCreateGroupButton} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                                Create Herbal Group 🌿
                             </button>
                         </div>
                     )}
 
                     {addUserFlag === true && (
-                        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
-                            <h2 className="text-2xl font-semibold text-center mb-8">Create a New Group</h2>
+                        <div className="max-w-md mx-auto p-6 bg-green-100 rounded-lg shadow-md mt-6">
+                            <h2 className="text-2xl font-semibold text-center text-green-900 mb-8">🌿 New Herbal Group Details</h2>
                             <GroupDetailsForm addedUsers={addedUsers} localStorageUser={localStorageUser} />
                         </div>
                     )}
                 </>
             ) : (
-                <p>No users found.</p>
+                <p className="text-center text-green-700">No green warriors found... yet 🌱</p>
             )}
             <ToastContainer />
         </div>

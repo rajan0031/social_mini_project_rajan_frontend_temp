@@ -2,8 +2,8 @@ import React from 'react';
 
 function ChatRoomLayout({ children }) {
     return (
-        <div className="min-h-screen flex flex-col bg-gray-100">
-            <div className="flex-grow overflow-auto p-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+        <div className="min-h-screen flex flex-col bg-green-50">
+            <div className="flex-grow overflow-auto p-4 scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-green-100">
                 {/* Chat messages will go here */}
                 {children}
             </div>

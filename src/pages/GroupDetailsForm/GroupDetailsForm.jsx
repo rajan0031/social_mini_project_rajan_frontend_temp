@@ -34,7 +34,7 @@ function GroupDetailsForm({ addedUsers, localStorageUser }) {
         });
 
         if (response) {
-            toast.success("🎉 Group created successfully! Time to chat and have fun!");
+            toast.success("🎉 Group created successfully! Time to chat and have fun! 🌸");
             navigate("/groupchatroom", {
                 state: {
                     groupName: groupName,
@@ -46,7 +46,7 @@ function GroupDetailsForm({ addedUsers, localStorageUser }) {
                 }
             });
         } else {
-            toast.error("😔 Oops! Something went wrong. Please try again.");
+            toast.error("😔 Oops! Something went wrong. Please try again. 🌿");
         }
     };
 
@@ -55,81 +55,81 @@ function GroupDetailsForm({ addedUsers, localStorageUser }) {
     }, [addedUsers]);
 
     return (
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+        <div className="max-w-md mx-auto bg-green-50 rounded-lg shadow-xl p-6">
             {/* Header */}
             <div className="text-center mb-6">
-                <BsFillChatSquareDotsFill className="text-4xl text-blue-500 mx-auto" />
-                <h2 className="text-2xl font-bold text-gray-800 mt-2">Create Your Awesome Group 🚀</h2>
-                <p className="text-gray-600 mt-1">🎉 Fill in the details below and start your epic group chat adventure! 💬</p>
+                <BsFillChatSquareDotsFill className="text-4xl text-green-500 mx-auto" />
+                <h2 className="text-2xl font-bold text-green-900 mt-2">🌱 Create Your Awesome Group 🌻</h2>
+                <p className="text-green-600 mt-1">🌿 Fill in the details below and start your epic group chat adventure! 💬</p>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit}>
                 {/* Group Name */}
                 <div className="mb-4">
-                    <label htmlFor="groupName" className="block text-sm font-medium text-gray-700 flex items-center">
-                        <AiOutlineUsergroupAdd className="mr-2" /> Group Name
+                    <label htmlFor="groupName" className="block text-sm font-medium text-green-700 flex items-center">
+                        <AiOutlineUsergroupAdd className="mr-2" /> Group Name 🌿
                     </label>
                     <input
                         type="text"
                         id="groupName"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                        className="mt-1 block w-full rounded-md border-green-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
                         value={groupName}
                         onChange={(e) => setGroupName(e.target.value)}
                         placeholder="Give your group an awesome name! 😎"
                         required
                     />
-                    <small className="text-gray-500">Make it fun, make it memorable! 🎉</small>
+                    <small className="text-green-500">Make it fun, make it memorable! 🌸</small>
                 </div>
 
                 {/* Group Description */}
                 <div className="mb-4">
-                    <label htmlFor="groupDescription" className="block text-sm font-medium text-gray-700 flex items-center">
-                        <MdOutlineDescription className="mr-2" /> Group Description
+                    <label htmlFor="groupDescription" className="block text-sm font-medium text-green-700 flex items-center">
+                        <MdOutlineDescription className="mr-2" /> Group Description 🍃
                     </label>
                     <textarea
                         id="groupDescription"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                        className="mt-1 block w-full rounded-md border-green-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
                         value={groupDescription}
                         onChange={(e) => setGroupDescription(e.target.value)}
                         placeholder="What's your group all about? 📣"
                         required
                     />
-                    <small className="text-gray-500">Let everyone know what they'll be chatting about! 🗣️</small>
+                    <small className="text-green-500">Let everyone know what they'll be chatting about! 🌼</small>
                 </div>
 
                 {/* Profile Link */}
                 <div className="mb-4">
-                    <label htmlFor="profileLink" className="block text-sm font-medium text-gray-700 flex items-center">
-                        <FaLink className="mr-2" /> Profile Link
+                    <label htmlFor="profileLink" className="block text-sm font-medium text-green-700 flex items-center">
+                        <FaLink className="mr-2" /> Profile Link 🌿
                     </label>
                     <input
                         type="url"
                         id="profileLink"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                        className="mt-1 block w-full rounded-md border-green-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
                         value={profileLink}
                         onChange={(e) => setProfileLink(e.target.value)}
                         placeholder="Add a cool profile pic link! 📸"
                         required
                     />
-                    <small className="text-gray-500">A group isn't complete without a fun profile pic! 🎨</small>
+                    <small className="text-green-500">A group isn't complete without a fun profile pic! 🎨</small>
                 </div>
 
                 {/* Admins */}
                 <div className="mb-4">
-                    <label htmlFor="admins" className="block text-sm font-medium text-gray-700 flex items-center">
-                        <FaUserShield className="mr-2" /> Admin's Username
+                    <label htmlFor="admins" className="block text-sm font-medium text-green-700 flex items-center">
+                        <FaUserShield className="mr-2" /> Admin's Username 👑
                     </label>
                     <input
                         type="text"
                         id="admins"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                        className="mt-1 block w-full rounded-md border-green-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
                         value={admins}
                         onChange={(e) => setAdmins(e.target.value)}
                         placeholder="Who's the boss? 🛡️"
                         required
                     />
-                    <small className="text-gray-500">Add the usernames of the almighty admins! 👑</small>
+                    <small className="text-green-500">Add the usernames of the almighty admins! 🌱</small>
                 </div>
 
                 {/* Admin-Only Message Option */}
@@ -137,12 +137,12 @@ function GroupDetailsForm({ addedUsers, localStorageUser }) {
                     <input
                         type="checkbox"
                         id="isAdminOnlyMessage"
-                        className="mr-2 rounded focus:ring-blue-500 text-blue-500"
+                        className="mr-2 rounded focus:ring-green-500 text-green-500"
                         checked={isAdminOnlyMessage}
                         onChange={(e) => setIsAdminOnlyMessage(e.target.checked)}
                     />
-                    <label htmlFor="isAdminOnlyMessage" className="text-sm font-medium text-gray-700 flex items-center">
-                        <FaCheck className="mr-2 text-blue-500" /> Only Admin Can Send Messages 📝
+                    <label htmlFor="isAdminOnlyMessage" className="text-sm font-medium text-green-700 flex items-center">
+                        <FaCheck className="mr-2 text-green-500" /> Only Admin Can Send Messages 📝
                     </label>
                 </div>
 
@@ -150,9 +150,9 @@ function GroupDetailsForm({ addedUsers, localStorageUser }) {
                 <div className="text-center">
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
                     >
-                        <AiOutlineCheckCircle className="inline-block mr-2" /> Create Group 🎉
+                        <AiOutlineCheckCircle className="inline-block mr-2" /> Create Group 🌿🎉
                     </button>
                 </div>
             </form>

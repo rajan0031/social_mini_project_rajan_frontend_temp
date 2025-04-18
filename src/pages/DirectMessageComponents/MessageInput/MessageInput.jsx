@@ -2,19 +2,21 @@ import React from 'react';
 
 function MessageInput({ message, handleInputChange, handleSend, isEditing }) {
     return (
-        <div className="bg-white p-4 rounded shadow-md flex items-center fixed bottom-0 left-0 right-0 z-10">
+        <div className="bg-green-50 border-t border-green-200 p-3 rounded-t-lg shadow-inner flex items-center fixed bottom-0 left-0 right-0 z-10">
             <input
                 onChange={handleInputChange}
                 value={message}
                 type="text"
-                placeholder="Type your message..."
-                className="border p-2 rounded w-full mr-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="🌱 Type your message..."
+                className="border border-green-300 p-2 rounded-lg w-full mr-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition"
             />
             <button
                 onClick={handleSend}
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
+                className={`${
+                    isEditing ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-500 hover:bg-green-600'
+                } text-white px-4 py-2 rounded-lg shadow-sm transition duration-300`}
             >
-                {isEditing ? 'Edit' : 'Send'}
+                {isEditing ? 'Update 🌿' : 'Send 🌼'}
             </button>
         </div>
     );

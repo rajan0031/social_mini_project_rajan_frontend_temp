@@ -5,6 +5,7 @@ import MessageInput from '../GroupChatRoomComponents/MessageInput/MessageInput';
 import MessagesList from '../GroupChatRoomComponents/MessagesList/MessagesList';
 import GroupHeader from '../GroupChatRoomComponents/GroupHeader/GroupHeader';
 import { getGroupMessageToDataBase, addGroupMessageToDataBase } from '../../../utils/GroupMessagesApiRoutes/GroupMessagesApiRoutes';
+import { GiPlantRoots } from 'react-icons/gi'; // Plant-related icons
 
 function GroupChatRoom() {
     const location = useLocation();
@@ -51,20 +52,26 @@ function GroupChatRoom() {
     };
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen bg-green-50">
             <GroupHeader group={group} navigate={navigate} />
-            <div className="bg-gray-200 p-4 flex-grow overflow-y-auto">
+            <div className="bg-green-100 p-4 flex-grow overflow-y-auto">
                 <div className="text-center mb-4">
-                    <h2 className="text-2xl font-semibold">Welcome to the {group.groupName} Group Chat!</h2>
-                    <p className="text-gray-600">
-                        Connect with your group members, share thoughts, and collaborate on ideas.
-                        Use the input box below to send messages to your group.
+                    <h2 className="text-3xl font-semibold text-green-600">
+                        Welcome to the {group.groupName} Group Chat! 🌱
+                    </h2>
+                    <p className="text-gray-700 mb-6">
+                        Connect with your group members, share thoughts, and collaborate on ideas. 🌿
+                        Use the input box below to send messages to your group. 💬
                         <span role="img" aria-label="sparkle"> ✨</span>
                     </p>
                 </div>
                 <MessagesList messages={messagesFromDataBase} localStorageUser={localStorageUser} />
             </div>
             <MessageInput message={message} setMessage={setMessage} handleSendMessage={handleSendMessage} />
+            <div className="bg-green-200 p-2 flex justify-center items-center">
+                <GiPlantRoots className="text-green-600 text-2xl mr-2" />
+                <p className="text-gray-700 font-semibold">Let your ideas grow like a plant! 🌱</p>
+            </div>
         </div>
     );
 }

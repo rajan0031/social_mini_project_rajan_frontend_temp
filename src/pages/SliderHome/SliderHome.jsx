@@ -56,15 +56,14 @@ const SliderHome = () => {
     };
 
     return (
-        <div className="w-full bg-gray-100 py-8">
+        <div className="w-full bg-green-100 py-8">
             <div className="max-w-3xl mx-auto">
-                <h1 className="text-4xl font-bold text-blue-600 mb-8 text-center">
-                    📚 The Trending Posts of Today 📅
+                <h1 className="text-4xl font-bold text-green-600 mb-8 text-center">
+                    🌿📚 The Trending Posts of Today 🌱📅
                 </h1>
                 <p className="text-lg text-gray-700 text-center mb-4">
-                    Discover the latest insights and stories from our vibrant community.
-                    Dive into topics that matter, engage with writers, and share your thoughts!
-                    📝❤️
+                    Discover the latest insights and stories from our vibrant community. 🌱
+                    Dive into topics that matter, engage with writers, and share your thoughts! 📝❤️
                 </p>
                 <Slider {...settings}>
                     {allPostsFromDataBase.slice(0, 5).map((post) => (
@@ -75,7 +74,7 @@ const SliderHome = () => {
                         >
                             <div className="bg-white rounded-lg shadow-md p-8 transition duration-300 hover:shadow-lg">
                                 <h3 className="text-xl font-semibold mb-4">
-                                    <FaPen className="inline-block text-blue-500 mr-2" />
+                                    <FaPen className="inline-block text-green-500 mr-2" />
                                     {post.title.substring(0, 20)}...
                                 </h3>
                                 <p className="text-gray-600 mb-4">
@@ -88,8 +87,8 @@ const SliderHome = () => {
                                     className="w-full h-48 object-cover rounded-lg mb-4"
                                 />
                                 <div className="flex items-center justify-end">
-                                    <span className="text-blue-500 font-semibold">Read More </span>
-                                    <FaArrowRight className="text-blue-500 ml-2" />
+                                    <span className="text-green-500 font-semibold">Read More 🍃</span>
+                                    <FaArrowRight className="text-green-500 ml-2" />
                                 </div>
                             </div>
                         </div>
@@ -97,9 +96,8 @@ const SliderHome = () => {
                 </Slider>
                 <div className="text-center mt-6">
                     <p className="text-gray-600">
-                        Join our community of passionate writers and readers!
-                        Connect with friends, share your ideas, and get inspired!
-                        🤝💬❤️
+                        Join our community of passionate writers and readers! 🌿📖
+                        Connect with friends, share your ideas, and get inspired! 🤝💬❤️
                     </p>
                 </div>
             </div>

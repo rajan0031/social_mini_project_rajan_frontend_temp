@@ -5,6 +5,7 @@ import { searchResults } from '../../../utils/searchResultsApis/searchResultsApi
 import IntroSection from '../BlogSearchResultsComponents/IntroSection/IntroSection';
 import SearchResultCard from '../BlogSearchResultsComponents/SearchResultCard/SearchResultCard';
 import { blogsDetails } from '../../../utils/apiRoutes';
+import { FaSearch, FaArrowRight, FaLeaf, FaBookOpen } from 'react-icons/fa'; // Importing icons
 
 function SearchResults() {
     const location = useLocation();
@@ -57,17 +58,40 @@ function SearchResults() {
     };
 
     return (
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto mt-10 px-4">
             <IntroSection />
-            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {searchResultsFromDataBase.map((result, index) => (
-                    <SearchResultCard
-                        key={index}
-                        result={result}
-                        currentUser={currentUser}
-                        onBlogDetails={handleBlogsDetails}
-                    />
-                ))}
+            
+            <div className="mt-8 text-center">
+                <h2 className="text-2xl font-bold text-green-600 mb-6">
+                    🌱 Search Results for "{searchData}" 🌱
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {searchResultsFromDataBase.length > 0 ? (
+                        searchResultsFromDataBase.map((result, index) => (
+                            <SearchResultCard
+                                key={index}
+                                result={result}
+                                currentUser={currentUser}
+                                onBlogDetails={handleBlogsDetails}
+                            />
+                        ))
+                    ) : (
+                        <div className="col-span-full">
+                            <p className="text-lg text-gray-600">
+                                No results found! 🌿 Please try a different search. 🌼
+                            </p>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <div className="mt-10 text-center">
+                <button 
+                    onClick={() => navigate('/')} 
+                    className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded-full shadow-md text-lg flex items-center justify-center mx-auto">
+                    <FaArrowRight className="mr-2" />
+                    Go back to Home 🌱
+                </button>
             </div>
         </div>
     );
